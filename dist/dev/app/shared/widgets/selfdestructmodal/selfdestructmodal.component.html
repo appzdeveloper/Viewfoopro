@@ -1,0 +1,97 @@
+<div class="modal fade selfdestructModal" id="selfdestructModal" role="dialog">
+    <div class="modal-dialog modal-sm" style="width: 600px;">
+        <!-- Modal content-->
+        <div class="modal-content" style="width:600px; max-width:100%;">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <small class="modal-title">Use the up and down arrow to 
+                    set the desired time this ViewFoo will be available:</small>
+            </div>
+            <div class="modal-body">
+                <!--   <div class="timer">
+                       <input  type="number" min="0"  onkeydown="return false">
+                       <input type="number" min="0" max="23" onkeydown="return false">
+                       <input type="number" min="0" max="59" onkeydown="return false">
+                       <input type="number" min="0" max="59" onkeydown="return false">
+   
+                   </div>
+                   <div class="timerlabel">
+                    <label>Days</label>
+                       <label>Hours</label>
+                       <label>Minutes</label>
+                       <label>Seconds</label>
+                       </div> -->
+
+                <div class="col-md-offset-1 col-sm-11" id="day_time_picker">
+                    <div id="dayPick" class="col-sm-3 dayPick">
+                        <div class="pull-left up_down_icons">
+                            <i id="upDay" class="fa fa-caret-up fa-2x" aria-hidden="true" (click)="checkday('increase')" ></i>
+                            <i id="downDay" class="fa fa-caret-down fa-2x" aria-hidden="true" (click)="checkday('decrease')"></i>
+                        </div>
+                        <span id="changeDay" class="changeDay" >{{currentday}}</span>
+                        <p>Days</p>
+                    </div> 
+
+                    <div id="hourPick" class="col-sm-3 dayPick hourPick">
+                        <div class="pull-left up_down_icons">
+                            <i id="upHours" class="fa fa-caret-up fa-2x" aria-hidden="true" (click)="checkhour('increase')"></i>
+                            <i id="downHours" class="fa fa-caret-down fa-2x" aria-hidden="true" (click)="checkhour('decrease')"></i>
+                        </div>
+                        <span id="changeHours" class="changeHours">{{currenthour}}</span>
+                        <p>Hours</p>
+                    </div> 
+
+                    <div id="minutePick" class="col-sm-3 dayPick minutePick">
+                        <div class="pull-left up_down_icons">
+                            <i id="upMinute" class="fa fa-caret-up fa-2x" aria-hidden="true" (click)="checkminute('increase')"></i>
+                            <i id="downMinute" class="fa fa-caret-down fa-2x" aria-hidden="true" (click)="checkminute('decrease')"></i>
+                        </div>
+                        <span id="changeMinute" class="changeMinute">{{currentminute}}</span>
+                        <p>Minutes</p>
+                    </div> 
+
+                    <div id="secondPick" class="col-sm-3 dayPick secondPick">
+                        <div class="pull-left up_down_icons">
+                            <i id="upMinute" class="fa fa-caret-up fa-2x" aria-hidden="true" (click)="checksecond('increase')"></i>
+                            <i id="downMinute" class="fa fa-caret-down fa-2x" aria-hidden="true" (click)="checksecond('decrease')"></i>
+                        </div>
+                        <span id="changeSecond" class="changeSecond">{{currentsecond}}</span>
+                        <p>Seconds</p>
+                    </div> 
+                </div> 
+            </div>
+
+            <div class="alert alert-error">WARNING! VIEWFOO WILL SELF DESTRUCT</div>
+            <div class="activate_note">
+                Once activated, ViewFoo Self Destruct will destroy all links and content related to this ViewFoo.
+                Anyone who was able to see the ViewFoo will no longer have access to this ViewFoo. 
+            </div>
+            <button class="self_destruct" data-toggle="modal" data-target="#selfdestructalert" (click)="selfdestructalert()"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                ACTIVATE VIEWFOO SELF DESTRUCT
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<div id="selfdestructalert" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <p>Once Activated, ViewFoo Self Destruct will destroy all links and content related to this ViewFoo.
+                    Are you sure you really want to set the ViewFoo Self Destruct Timer?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="selfdestructactivate()">Activate</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cnacelselfdestruct()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

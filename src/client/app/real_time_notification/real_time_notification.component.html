@@ -1,0 +1,186 @@
+<section class="content-wrapper">
+    <div class="header-bottombelt">
+       <div class="container-fluid">
+            <div class="row">
+                <div class="notification-title">
+                    <i class="mail-icon"></i>
+                    <h1>Real-time notifications</h1>
+                    <i *ngIf="isloading" class='fa fa-spinner fa-spin'></i>
+                </div>
+           </div>
+       </div>
+   </div>
+    <div class="container">
+        <div class="row">
+            <div class="notification-block">
+                <div class="col-md-12">
+                    <div class="mobile-notification">
+                        <div class="form-group">
+                            <label>Mobile number for real-time text notifications</label>
+                            <input  type="text" placeholder="" [(ngModel)]="mobilenumber" (blur)="changeSetting('mobilenumber',mobilenumber)" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="sharing-notification">
+                        <div class="notify-when-share"><p>Sharing notification</p></div>
+                        <div class="sharing-switch">
+                            <input type="checkbox"  [checked]="sharenotification"  [(ngModel)]="sharenotification" #shareit (change)="changeSetting('issharing',shareit.checked)" id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round">
+                            <label for="cmn-toggle-1"></label>
+                        </div>
+                        <div class="notify-via">
+                            <p>Notify me when someone shares one of my ViewFoos</p>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!sharenotification" [checked]="sharingtype=='email'" class='CBSharing' [(ngModel)]="shareemailnotification" (change)="changeSetting('sharingtype','email')" type="checkbox" value="email">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Email
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!sharenotification" [checked]="sharingtype=='mobile'" class='CBSharing' [(ngModel)]="sharemobilenotification"  (change)="changeSetting('sharingtype','mobile')" type="checkbox" value="mobile">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Mobile text
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!sharenotification"  [checked]="sharingtype=='both'" class='CBSharing' [(ngModel)]="sharebothnotification" type="checkbox"  (change)="changeSetting('sharingtype','both')" value="both">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Both
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sharing-notification">
+                        <div class="notify-when-share"><p>Photo notification</p></div>
+                        <div class="sharing-switch">
+                            <input type="checkbox" [checked]="sharephotonotification" [(ngModel)]="sharephotonotification"  #CBsharephotonotification (change)="changeSetting('isphoto',CBsharephotonotification.checked)" id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round">
+                            <label for="cmn-toggle-2"></label>
+                        </div>
+                        <div class="notify-via">
+                            <p>Notify me when someone shares one of my ViewFoos</p>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!sharephotonotification"  [checked]="phototype=='email'" class='CBsharephoto' type="checkbox" [(ngModel)]="sharephotoemailnotification" (change)="changeSetting('phototype','email')" value="email">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Email
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!sharephotonotification" [checked]="phototype=='mobile'" class='CBsharephoto' type="checkbox" [(ngModel)]="sharephotomobilenotification" (change)="changeSetting('phototype','mobile')" value="mobile">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Mobile text
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!sharephotonotification" [checked]="phototype=='both'" class='CBsharephoto' type="checkbox" [(ngModel)]="sharephotobothnotification" (change)="changeSetting('phototype','both')" value="both">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Both
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sharing-notification">
+                        <div class="notify-when-share"><p>Photo selection notification</p></div>
+                        <div class="sharing-switch">
+                            <input type="checkbox" [checked]="photoselectnotification"   [(ngModel)]="photoselectnotification" #CBphotoselectnotification (change)="changeSetting('isphotoselection',CBphotoselectnotification.checked)" id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round">
+                            <label for="cmn-toggle-3"></label>
+                        </div>
+                        <div class="notify-via">
+                            <p>Notify me when someone shares one of my ViewFoos</p>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!photoselectnotification" [checked]="photoselectiontype=='email'" class='CBphotoselect' [(ngModel)]="photoselectemailnotification" (change)="changeSetting('photoselectiontype','email')" type="checkbox" value="email">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Email
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input  [disabled]="!photoselectnotification"  [checked]="photoselectiontype=='mobile'" class='CBphotoselect' [(ngModel)]="photoselectmobilenotification" (change)="changeSetting('photoselectiontype','mobile')" type="checkbox" value="mobile">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Mobile text
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input  [disabled]="!photoselectnotification" [checked]="photoselectiontype=='both'" class='CBphotoselect' type="checkbox" [(ngModel)]="photoselectbothnotification" (change)="changeSetting('photoselectiontype','both')" value="both">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Both
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="sharing-notification">
+                        <div class="notify-when-share"><p>ViewFoo chat/comment notification</p></div>
+                        <div class="sharing-switch">
+                            <input [checked]="chatnotification"  [(ngModel)]="chatnotification" #CBchatnotification type="checkbox" (change)="changeSetting('ischatorcomment',CBchatnotification.checked)"  id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round">
+                            <label for="cmn-toggle-4"></label>
+                        </div>
+                        <div class="notify-via">
+                            <p>Notify me when someone comments on one of my ViewFoos</p>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!chatnotification"  [checked]="chatorcommenttype=='email'" class = 'CBchat' [(ngModel)]="chatemailnotification"  (change)="changeSetting('chatorcommenttype','email')" type="checkbox" value="email">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Email
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!chatnotification" [checked]="chatorcommenttype=='mobile'" class = 'CBchat' [(ngModel)]="chatmobilenotification" (change)="changeSetting('chatorcommenttype','mobile')" type="checkbox" value="mobile">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Mobile text
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input  [disabled]="!chatnotification" [checked]="chatorcommenttype=='both'" class = 'CBchat' type="checkbox" [(ngModel)]="chatbothnotification" (change)="changeSetting('chatorcommenttype','both')" value="both">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Both
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sharing-notification">
+                        <div class="notify-when-share"><p>ViewFoo.Pro news - information from ViewFoo</p></div>
+                        <div class="sharing-switch">
+                            <input type="checkbox" [checked]="newsnotification"  [(ngModel)]="newsnotification"  #CBnewsnotification (change)="changeSetting('isviewfoonews',CBnewsnotification.checked)"  id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round">
+                            <label for="cmn-toggle-5"></label>
+                        </div>
+                        <div class="notify-via">
+                            <p>Notify me when ViewFoo release new or information about ViewFoo Pro</p>
+                            <div class="checkbox">
+                              <label>
+                                <input  [disabled]="!newsnotification" [checked]="viewfoonewstype=='email'" class = 'CBnews' type="checkbox" [(ngModel)]="newsemailnotification" (change)="changeSetting('viewfoonewstype','email')"  value="email">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Email
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!newsnotification" [checked]="viewfoonewstype=='mobile'" class = 'CBnews' type="checkbox"  [(ngModel)]="newsmobilenotification"  (change)="changeSetting('viewfoonewstype','mobile')" value="mobile">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Mobile text
+                              </label>
+                            </div>
+                            <div class="checkbox">
+                              <label>
+                                <input [disabled]="!newsnotification" [checked]="viewfoonewstype=='both'" class = 'CBnews' type="checkbox"  [(ngModel)]="newsbothnotification"  (change)="changeSetting('viewfoonewstype','both')" value="both">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Both
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

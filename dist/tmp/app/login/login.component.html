@@ -1,0 +1,68 @@
+<div class="main_bg"></div>
+<div class="main">
+    <div class="center_box"> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="signup-logo">
+
+                 <a href=""><img src="img/white_logo.png" alt=""></a>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+             <!--   
+             <div class="title_block">
+                    <h4>Sign in</h4>
+                    <p>Use your email and password you signed up with.</p>                    
+                </div>
+             -->
+            </div>
+            <div class="col-md-12">
+                <div class="signin_form">
+                <div class="title_block">
+                    <h4>Sign in</h4>
+                    <p>Use your email and password you signed up with.</p>                    
+                </div>
+                    <form [formGroup]="loginform" (ngSubmit)="doLogin()" >
+                        <div class="form-group">
+                            <input type="text" placeholder="Email" class="form-control"
+                                   formControlName="email" (keyup)="changemsgstatus()"/>
+                            <div *ngIf="email.touched" 
+                                class="text text-danger pull-right small">
+                                <span *ngIf="email.hasError('required')">Email is required</span>
+                                <span *ngIf="email.hasError('invalidEmail')">Email is invalid</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" class="form-control"
+                                   formControlName="password" />
+                            <div *ngIf="password.touched" 
+                                class="text text-danger pull-right small">
+                                <span *ngIf="password.hasError('required')">password is required</span>
+                            </div>
+                        </div>
+                  
+                        <!--                        <a href="javascript:void" class="btn btn-default signin_btn" [class.disabled]='!loginform.valid'>
+                                                    Signin
+                                                    <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                                                 </a>-->
+                     <button type="submit" class="btn btn-default signin_btn" [disabled]='!loginform.valid'>
+                        Signin
+                           <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
+                      </button>
+                       <!-- <button class="regi_btn" type="button" (click)="gotoSignup()">Register</button> -->
+                       <a href="javascript:void(0)"  class="btn btn-default regi_btn" (click)="gotoSignup()">Register</a>
+                        <div *ngIf="errorMsg" class="text text-danger">{{errorMsg}}</div>
+                    </form>
+                    <p class="forgot">Forgot password? 
+                        <a href="javascript:void(0)" (click)="gotofpass()">Click here</a>
+                    </p>
+                    
+                </div>
+            </div>
+
+        </div> 
+    </div>
+
+</div>

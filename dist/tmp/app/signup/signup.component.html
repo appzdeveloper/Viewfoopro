@@ -1,0 +1,77 @@
+<div class="main_bg"></div>
+<div class="main">
+    <div class="center_box">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="signup-logo">
+
+                   <a href=""><img src="img/white_logo.png" alt=""></a>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+
+            </div>
+            <div class="col-md-12">
+                <div class="signup_form">
+                     <div class="title_block">
+                    <h4>Start your FREE trial</h4>
+                    <p>No credit card needed for free trial. </p>
+                    </div>
+                    <form   [formGroup]="regform" (ngSubmit)="doSignup()">
+                        <div class="form-group">
+                            <input type="text" formControlName="firstname" class="form-control" placeholder="First Name">
+                            <div class="text text-danger pull-right small" *ngIf="firstname.touched">
+                                <div *ngIf="firstname.hasError('required')"> First name is required </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" formControlName="lastname" class="form-control" placeholder="Last Name">
+                            <div class="text text-danger pull-right small" *ngIf="lastname.touched">
+                                <div *ngIf="lastname.hasError('required')"> Last name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" formControlName="email" class="form-control"  placeholder="Email Address">
+                            <div class="text text-danger pull-right small" *ngIf="email.touched">
+                                <div *ngIf="email.hasError('required')">  Email is required  </div>
+                                <div *ngIf="email.hasError('invalidEmail')"> Email is invalid  </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" formControlName="subdomain" class="form-control"  placeholder="Your Desired URL" (blur)="chksubdomain(subdomain.value)">
+                              <div class="text text-danger pull-right small" *ngIf="subdomain.touched">
+                                <div *ngIf="subdomain.hasError('required')">  subdomain is required  </div>
+                                <div *ngIf="invaliddomain">{{domainmessage}}</div>
+                               <!-- <div *ngIf="subdomain.control.hasError('invaliddomain')"> subdomain already exist</div>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="password" class="form-control"  placeholder="Password">
+                            <div class="text text-danger pull-right small" *ngIf="password.touched">
+                                <div *ngIf="password.hasError('required')">Password is required </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="confirmpassword" class="form-control"  placeholder="Confirm Password">
+                            <div class="text text-danger pull-right small" *ngIf="confirmpassword.touched">
+                                <div *ngIf="regform.hasError('mismatchedPasswords')" >Passwords do not match </div>
+                            </div>
+                        </div>
+                        <button  class="btn btn-primary" type="submit" [disabled]='!regform.valid'
+                                  >Let's Go!<i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
+                        <p class="errorMessage">{{message}}</p>
+                    </form>
+                     <p class="login_link">Already have an account? <a href="javascript:void(0);" (click)="gotoLogin()" >Login here</a></p>
+                    <p class="signup_detail">By signing up, you agree to ViewFoo’s <a href="">Terms of Use</a> and <a href="">Privacy Policy.</a>You can cancel your subscription at any time, no questions asked. When an account is cancelled, it will be taken offline.</p>
+                    <div class="secure">
+                        <div class="secure_right"></div>
+                        <div class="secure_left">
+                        <p>This page is secure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

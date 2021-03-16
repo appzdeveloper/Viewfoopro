@@ -1,0 +1,264 @@
+<div class="tile-view-template">
+
+    <div class="tile-section">
+        <div class="gellery-view-box" *ngFor="let vf of viewfoolist;let viewfooindex=index;">
+             <div class="model-pic">
+                <img src="{{imageUrl}}/{{vf.coverimage}}" />
+                <!-- <a href="javascript:void(0)" (click)="gotogallary(vf.id)">
+                  <img src="{{imageUrl}}/{{vf.coverimage}}" />
+                </a> -->
+                <div class="connect-with-sarah">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" (click)="gotogallary(vf.id)" title="View"><i class="view"></i></a>
+                        </li>
+                        <li>
+                            <a data-target="#myModal1" data-toggle="modal"  (click)="getComment(vf.id)" title="View"><i class="comment"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="View"><i class="connect"></i></a>
+                        </li>
+                    </ul>
+                    <div class="diveditdelete" *ngIf="loginUser.id == vf.userid">
+                         <a href="javascript:void(0)" title="Delete" (click)="onDeleteViewfoo(vf.id, viewfooindex)">
+                       <i class="fa" [class.fa-trash]="!loading" [class.fa-spinner]="loading" [class.fa-spin]="loading"></i>
+                        </a>
+
+                        <a href="javascript:void(0)" title="Edit" (click)="onEditViewfoo(vf.id)">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+  <div class="tile-section">
+    <div class="gellery-view-box" *ngFor="let vf of viewfoolist;let viewfooindex=index;">
+      <div class="model-pic" *ngIf="vf.ispasswordprotected==false">
+          <img src="{{imageUrl}}/{{vf.coverimage}}" />
+        <!-- <a href="javascript:void(0)" (click)="gotogallary(vf.id)">
+          <img src="{{imageUrl}}/{{vf.coverimage}}" />
+        </a> -->
+        <div class="connect-with-sarah">
+          <ul>
+            <li>
+              <a href="javascript:void(0)" (click)="gotogallary(vf.id)" title="View"><i class="view"></i></a>
+            </li>
+            <li *ngIf="vf.allowcomment == 'true'">
+                  <a href="javascript:void(0)" title="View" (click)="onViewfooComment(vf)"><i class="comment"></i></a>
+            </li>
+            <li *ngIf="vf.allowsharing == 'true'">
+              <a href="javascript:void(0)" title="View" (click)="onViewfooShare(vf)"><i class="connect"></i></a>
+            </li>
+          </ul>
+          <div class="diveditdelete" *ngIf="loginUser.id == vf.userid">
+            <a href="javascript:void(0)" title="Delete" (click)="onDeleteViewfoo(vf.id, viewfooindex)">
+              <i class="fa" [class.fa-trash]="!loading" [class.fa-spinner]="loading" [class.fa-spin]="loading"></i>
+            </a>
+            <a data-toggle="modal" data-target="#passwordModal" *ngIf="vf.viewfootype=='private'" title="unlock" (click)="openpasswordpopup(vf.id)">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0)" title="Edit" (click)="onEditViewfoo(vf.id)">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+          <div class="model-pic" *ngIf="vf.ispasswordprotected==true">
+               <a data-toggle="modal" data-target="#unlockpasswordModal"  title="unlock" (click)="unlockviewfooid=vf.id" >
+             <img src="img/ViewFoo_Cover_Password_Protected.jpg" width="200" height="150"  />
+               </a>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="min-height: 400px;">
+            <input type="hidden" name="viewfoocommentid" [(ngModel)]="viewfoocommentid">    
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Viewfoo Comment</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form [formGroup]="viewfoocomment" #viewfoocomment1="ngForm" (ngSubmit)="doComment()">
+                        <div class="form-group">
+                            <textarea class="form-control" formControlName="viewfoocommenttext" id="viewfoocommenttext1" rows="3" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button  [disabled]='!viewfoocomment.valid || !isEnable' class="btn invite_btn">comment</button>
+                        </div>
+                    </form>
+                </div>
+                <div style="overflow-y: scroll;max-height:200px; ">
+                    <div class="row" *ngFor="let cmt of viewfoocomments">
+                         <div class="col-sm-12">  
+                            <div class="col-sm-2">
+                                <img style="height:45px;widht:45px;" src="{{profileimageUrl}}/{{cmt.userid.profileimage}}" alt=""/>
+                            </div>
+                            <div class="col-sm-10">
+                                <h4>{{cmt.userid.firstname}} {{cmt.userid.lastname}}</h4>
+                                <span>{{cmt.commenttext}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">  
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal" id="passwordModal" role="dialog">
+    <div class="modal-dialog modal-sm" style="width: 400px;">
+        <!-- Modal content-->
+        <div class="modal-content" style="min-height: 400px;width:400px ">
+       
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Viewfoo Paaword Protect</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row passwordbody">
+                                      <ul>
+                                            <!--<li><a class="white" href="javascript:void(0)" (click)="changemenucolor('white')"></a></li>-->
+                                            <!--<li><a class="black" href="javascript:void(0)" (click)="changemenucolor('black')"></a></li>-->
+                                                <li><a href="javascript:void(0)">
+                                                <input id="radio1" type="radio" checked="checked"  value="1" name="radio" class="white" (change)="changepasswordtype('generate')">
+                                                <label for="radio1">Auto generate strongest password</label>
+                                                </a></li>
+                                            <li><a href="javascript:void(0)">
+                                                <input id="radio2" type="radio" value="2" name="radio" (change)="changepasswordtype('own')">
+                                                <label for="radio2">Use your own password</label>
+                                                </a></li>
+                                          
+                                        </ul>
+                    
+                    <form [formGroup]="viewfoopassword1"  (ngSubmit)="updateviewfoopasswprd()">
+                        <div>
+                        <div class="col-lg-10 ownpassword" *ngIf!="generateownpassword">
+                            <div class="form-group">
+                            <input type="password" formControlName="password" class="form-control"  placeholder="Password">
+                            <div class="text text-danger pull-right small" *ngIf="password.touched">
+                                <div *ngIf="password.hasError('required')">Password is required </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="confirmpassword" class="form-control"  placeholder="Confirm Password">
+                            <div class="text text-danger pull-right small" *ngIf="confirmpassword.touched">
+                                <div *ngIf="viewfoopassword1.hasError('mismatchedPasswords')" >Passwords do not match </div>
+                            </div>
+                        </div>
+                        </div>
+                          <div class="col-lg-10 generateinput">
+                        <div class="input-group " *ngIf="generateownpassword">
+                            
+                            <input type="text" disabled formControlName="generatedpassword" class="form-control ">
+                              <span class="input-group-btn">
+                             <button type="button" class="btn btn-secondary" (click)="generatepassword()"> <i *ngIf="isloading" class='fa fa-spinner fa-spin'></i>Regenerate</button>
+                              </span>
+                        </div>
+                        </div>
+                </div>
+                    
+                        <div class="col-lg-12 passwordchkbox">
+                            <div class="optionaltext">
+                            <b>Save ViewFoo Password Via (optional): </b>
+                            <small>Send a copy of this ViewFoo Password to:</small>
+                            </div>
+                            <div class="passwordchbox">
+                                   <div class="checkbox">
+                                      <label>
+                                          <input type="checkbox" #chkmail  formControlName="chkmail"  [(ngModel)]="checkemail" class="CBmenustyle" (change)="checkemail=chkmail.value">
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                       Email
+                                      </label>
+                                      <label>
+                                          <input type="checkbox" #chksms formControlName="chksms"  [(ngModel)]="checksms" class="CBmenustyle" (change)="checksms=chksms.value">
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                      Mobile SMS
+                                      </label>
+                                    </div>   
+                        
+                        </div>
+                        <br>
+                        <div>
+                            <button type="submit" [disabled]='!viewfoopassword1.valid || !isEnable' class="btn btn-default passwordsave"><i class="fa fa-lock" aria-hidden="true"></i>   SAVE and PROTECT  
+                            <i *ngIf="isloading" class='fa fa-spinner fa-spin'></i>
+                            </button>
+                        </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal" id="unlockpasswordModal" role="dialog">
+    <div class="modal-dialog modal-sm" style="width: 400px;">
+        <!-- Modal content-->
+        <div class="modal-content" style="min-height: 400px;width:400px ">
+       
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Viewfoo Paaword Protect</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row passwordbody">
+ 
+                          <div class="col-lg-10 generateinput">
+                         <label>Enter ViewFoo Password to Unlock:</label>
+                        <div class="input-group " >
+                           
+                            <input type="text" #unlockpasswordval  class="form-control ">
+                              <span class="input-group-btn">
+                             <button type="button" class="btn btn-secondary" (click)="unlockpassword(unlockpasswordval)">UNLOCK 
+                             <i *ngIf="isloading" class='fa fa-spinner fa-spin'></i>
+                             </button>
+                              </span>
+                        </div>
+                        </div>
+                        <div class="error"  *ngIf=iserror>{{errorMsg}}</div>
+             
+                        <div class="col-lg-12 passwordchkbox">
+                            <div class="optionalunlocktext">
+                            <b>Retrieve ViewFoo Password Via (optional): </b>
+                            <small>Send a copy of this ViewFoo Password to:</small>
+                            </div>
+                            <div class="passwordchbox">
+                                   <div class="checkbox">
+                                      <label>
+                                          <input type="checkbox"  checked disabled     class="CBmenustyle" >
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                       Email
+                                      </label>
+                                      <label>
+                                          <input type="checkbox" #chkunlocksms   [(ngModel)]="checkunlocksms" class="CBmenustyle" (change)="checkunlocksms=chkunlocksms.value">
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                      Mobile SMS
+                                      </label>
+                                    </div>   
+                        
+                        </div>
+                        <br>
+                        <div>
+                            <button type="button" class="btn btn-default passwordsend" (click)="sendpassword()">SEND PASSWORD</button>
+                        </div>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<commentmodal [currViewfoo]="currViewfooComment"></commentmodal>
+<sharemodal [currViewfoo]="currViewfooShare" [currImage]="currViewfooImageShare"></sharemodal>
+

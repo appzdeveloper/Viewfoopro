@@ -1,0 +1,139 @@
+
+
+    
+<div class="upload-section viewfoo-full-screen" *ngIf="container">
+
+<div class="gellery-title">                        
+    <div class="form-group">                            
+        <input type="text" placeholder="ViewFoo gallery container title" #title 
+               [(ngModel)]="container.containertitle" class="form-control" (blur)="onUpdateContainer(container.containertitle)">
+    </div>
+    <a href="#"></a>
+</div>
+<div class="upload-image viewfoo-full-screen" > 
+    <h3>Upload images here</h3>
+       <div class="up-button">
+        <a href="javascript:void(0)" class="btn btn-default" id="upload_image_{{container.id}}" 
+           [style.opacity]="container.opacity?0:1">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            Upload more</a>
+        <a href="javascript:void(0)">
+            <img src="img/build_viewfoo/close_icon.png" (click)="onDeleteContainer()" 
+                 *ngIf="!container.deleting"/>
+            <i *ngIf="container.deleting" class='fa fa-spinner fa-spin'></i>
+        </a>
+    </div>   
+ 
+   <!-- <div class="img-block" #imgblock>
+        <ul class="displayImageBlock" id="preview_{{container.id}}">
+            <li class="displayImage fadeIn animated" [class.fadeOut]="containerimage.deleted"
+                *ngFor="let containerimage of container.dispImageArray;let j=index" [class.dz-complete]="containerimage.isCompleted">
+                <div *ngIf="!containerimage.isBlankImage">
+                    <div class="dz-image" style="cursor: pointer;"
+                         (click)="onClickPreview(j)">
+                        <img data-dz-thumbnail src="{{containerimage.imagename}}" alt=""/>
+                    </div>
+                    <div class="dz-progress" *ngIf="!containerimage.isCompleted">
+                        <!--<span class="dz-upload" data-dz-uploadprogress></span>-->                                            
+                      <!--  <span class="dz-upload" [style.width]="containerimage.progress"></span>
+                    </div>
+                    <div class="dz-error-message" data-dz-errormessage></div>
+                    <div class="dz-success-mark"></div>  
+                    <div class="dz-error-mark"></div>
+                    <div class="preview-details">
+                        <!--<i class="glyphicon glyphicon-trash" data-dz-remove  ></i>-->
+                      <!--  <i class="glyphicon glyphicon-trash" *ngIf="!containerimage.deleting"
+                           (click)="containerImageDelete(container.id, containerimage.id, j)" ></i>
+                        <i *ngIf="containerimage.deleting" class='fa fa-spinner fa-spin'></i>
+                        <div class="dz-size" data-dz-size></div>
+                    </div>
+                </div>
+                <!--<div *ngIf="containerimage.isBlankImage">
+                    <div class="first-pic">
+                        <img src="img/select_template/third_view_icon.png" alt="" />
+                    </div>
+                </div>-->
+                  <!--   <div class="first-pic" *ngIf="containerimage.isBlankImage">
+                        <img src="img/select_template/third_view_icon.png" alt=""/>
+                    
+                    </div>
+            </li>
+        </ul>
+              <div class="pagination"> 
+         
+            <pagination                 
+                [itemsPerPage]="container.itemsPerPage"
+                [attr.boundaryLinks]="true"
+                [totalItems]="container.containerimages.length"       
+                [gotoLastPage]="container.gotoLastPage"
+                (pageChanged)="currentPageChanged($event, container)" 
+                (numPages)="numberOfPages($event, container)"
+                [attr.maxSize]="3"></pagination>
+            <!--<div class="one" id="">1</div>-->
+      <!--  </div>
+    </div>-->
+            <div class="img-block second-img" #imgblock>
+            <div id="carouselholder_{{container.id}}">
+                <!--containerimage of container.dispImageArray-->
+                <div class="item fadeIn animated" [class.fadeOut]="containerimage.deleted"
+                    *ngFor="let containerimage of container.totalImageArray;let j=index" 
+                    [class.dz-complete]="containerimage.isCompleted" >
+                    <div class="first-pic" *ngIf="!containerimage.isBlankImage">
+                        <div class="dz-image" style="cursor: pointer"
+                             (click)="onClickPreview(j)">
+                            <img  data-dz-thumbnail src="{{containerimage.imagename}}" alt=""/>
+                        </div>                         
+                        <div class="dz-progress" *ngIf="!containerimage.isCompleted">
+                            <span class="dz-upload" [style.width]="containerimage.progress"></span>
+                        </div>                        
+                        <div class="dz-error-message" data-dz-errormessage></div>
+                        <div class="dz-success-mark"></div>  
+                        <div class="dz-error-mark"></div>
+                        <div class="preview-details">
+                            <i class="glyphicon glyphicon-trash" *ngIf="!containerimage.deleting"
+                               (click)="containerImageDelete(container.id, containerimage.id, j)" ></i>
+                            <i *ngIf="containerimage.deleting" class='fa fa-spinner fa-spin'></i>
+                            <div class="dz-size" data-dz-size></div>
+                        </div> 
+                    </div>
+                    <div class="first-pic" *ngIf="containerimage.isBlankImage">
+                        <img src="img/select_template/third_view_icon.png" alt=""/>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">                  
+                               <pagination                 
+                                    [itemsPerPage]="container.itemsPerPage"
+                                    [attr.boundaryLinks]="true"
+                                    [totalItems]="container.containerimages.length"       
+                                    [gotoLastPage]="container.gotoLastPage"
+                                    (pageChanged)="currentPageChanged($event, container)" 
+                                    (numPages)="numberOfPages($event, container)"
+                                    [attr.maxSize]="1"></pagination>             
+            </div>
+        </div>
+    <form class='myDropzone' id="form_{{container.id}}">
+        <input type="hidden" value="{{container.id}}" name='containerid' />
+        <input type="hidden" value="{{container.viewfooid}}" name='viewfooid' />
+        <input type="hidden" value="{{loginUser.id}}" name='userid' />
+        <!--style="z-index: -100;"-->
+        <div class="dropzone drag-image " id='dzph_{{container.id}}' [style.opacity]="container.opacity"  >
+            <!--style="z-index: -100"-->
+            <div class="upload-img-content">
+                <i class="upload-files"></i>
+                <div class="dz-default dz-message">
+                    <span>Drop files here to upload
+                        <br>
+                        Or
+                        <br>
+                        click to upload files</span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="resize-icon"></div>
+</div>
+</div>
+<!--<a href="javascript:void(0)" class="btn btn-default next">Next</a>-->

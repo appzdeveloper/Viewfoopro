@@ -1,0 +1,65 @@
+<div class="cover_selection" [class.with_frame]="currentViewfoo.imageinfoframe == 'true'">
+  <p>{{container.containertitle}}&nbsp;</p>
+  <ul>
+    <li *ngFor="let containerimage of container.dispImageArray;let j=index;" [style.width]="lipercentage" [style.height]="liheight">
+      <a href="javascript:void(0)">
+        <img [src]="containerimage.thumbimagename || containerimage.imagename || 'img/defaultviewfooimg.jpg'"
+         onError="this.src='img/defaultviewfooimg.jpg'" alt="Model2" class="model_img" />
+      </a>
+      <div class="connect-with-sarah">
+        <ul>
+          <li>
+            <a title="View" href="javascript:void(0)" (click)="onClickPreview(j)"><i class="view"></i></a>
+          </li>
+          <li *ngIf="currentViewfoo.allowselection == 'true'">
+            <a href="javascript:void(0)">
+              <i class="select"></i>
+            </a>
+          </li>
+          <li *ngIf="currentViewfoo.allowsharing == 'true'">
+            <a href="javascript:void(0)" title="share" (click)="shareImage(containerimage)">
+              <i class="share"></i>
+            </a>
+          </li>
+          <li *ngIf="currentViewfoo.allowcomment == 'true'">
+            <a href="javascript:void(0)" title="Comment" (click)="commentImage(containerimage)">
+              <i class="comment"></i>
+            </a>
+          </li>
+
+          <!--              <li *ngIf="currentViewfoo.allowselection == 'true' || currentViewfoo.allowsharing == 'true' || currentViewfoo.allowcomment == 'true'">
+                  <a title="More" href="javascript:void(0)" (click)="onClickImage(containerimage)"><i class="fa fa-ellipsis-h" aria-hidden="true" style="color:#fff;"></i></a>
+              </li>-->
+        </ul>
+      </div>
+      <!--      <div class="social_share" [class.share_img]="containerimage.isclicked">
+        <ul>
+          <li *ngIf="currentViewfoo.allowselection == 'true'">
+            <a href="javascript:void(0)">
+                <i class="select"></i>Select Photo
+            </a>
+          </li>
+          <li *ngIf="currentViewfoo.allowsharing == 'true'">
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#SelectPhotoModal">
+                <i class="share"></i>Share Photo
+            </a>
+          </li>
+          <li *ngIf="currentViewfoo.allowcomment == 'true'">
+                <a href="javascript:void(0)" title="Comment" (click)="testevent(containerimage)">
+                    <i class="comment"></i>Comment on Photo
+                </a>
+          </li>
+        </ul>
+      </div>-->
+      <div class="rate_img" *ngIf="currentViewfoo.imageinfoframe == 'true'">
+        <!-- <a href="javascript:void(0)">
+          <i class="fa fa-flag" aria-hidden="true"></i>
+        </a> -->
+        <p>{{container.imagedefaultno+j}}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+<!--<commentmodal [currViewfoo]="currentViewfoo" (onImageComment) = "changeComment($event)"  [commenttype]="'containerimage'"></commentmodal>-->
+<pagination *ngIf="container" [isPublicViewfoo]="true" [itemsPerPage]="container.itemsPerPage" [attr.boundaryLinks]="true" [totalItems]="container.containerimages.length" [gotoLastPage]="container.gotoLastPage" (pageChanged)="currentPageChanged($event, container)"
+    (numPages)="numberOfPages($event, container)" [attr.maxSize]="0"></pagination>

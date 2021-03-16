@@ -1,0 +1,35 @@
+<div class="upload-section viewfoo-carousel-view" *ngIf="container">
+    <div class="gellery-title"> 
+       <h3>{{container.containertitle}}</h3>
+    </div>
+    <div class="upload-image">    
+        <div class="img-block second-img" #imgblock>
+            <div class="displayImageBlock" >
+                <div class="displayImage fadeIn animated" *ngIf="containerimage" 
+                 [class.fadeOut]="containerimage.deleted"                                           
+                 [class.dz-complete]="containerimage.isCompleted">
+                    <div class="first-pic" *ngIf="!containerimage.isBlankImage">
+                        <img class="previewimg corousel-img" data-dz-thumbnail src="{{serviceUrl + '/upload/gallery/'+containerimage.imagename}}" alt=""
+                             (click)="onClickPreview(container.currentPage-1)"/>
+                        <div class="slide-nav" *ngIf="containertype=='carousel'">
+                            <a *ngIf="container.currentPage!=1" class="left-arrow" (click)="previousPage($event, container)" style="cursor:pointer;"></a> 
+                            <a *ngIf="container.currentPage!=container.totalImageArray.length" class="right-arrow" (click)="nextPage($event, container)" style="cursor:pointer;"></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">           
+                <pagination 
+                    [currentPage]="container.currentPage1"
+                    [itemsPerPage]="container.itemsPerPage"
+                    [attr.boundaryLinks]="true"
+                    [totalItems]="container.containerimages.length"       
+                    [gotoLastPage]="container.gotoLastPage"
+                    [isCarousel]= "(containertype=='carousel')"
+                    (pageChanged)="currentPageChanged($event, container)" 
+                    (numPages)="numberOfPages($event, container)"
+                    [attr.maxSize]="3"></pagination>               
+            </div>            
+        </div>
+    </div>
+</div>

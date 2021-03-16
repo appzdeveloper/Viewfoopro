@@ -1,0 +1,247 @@
+<!-- For Sidebar Settings -->
+<div *ngIf="userhomesettings" class="publicview">
+  <div id="wrapper" *ngIf="userhomesettings.navposition=='left'">
+    <sidebarnav [folderlist]="folderlist"
+    [menuBackgroundcolor]="userhomesettings.menucolor"
+    [fontcolor]="userhomesettings.fontcolor" (folderchange)="getPublicViewfoolist($event)"></sidebarnav>
+    <div class="page-content-wrapper">
+      <div class="sidemenu-block">
+        <div class="col-md-12 gallerylen-belt">
+          <div class="gallery-len">
+            <a href="#"><img src="../img/public_views/gallery_len.png" alt="Gallery Len" /></a>
+          </div>
+          <div class="different-view" *ngIf="userhomesettings.viewfoooption == 'true'">
+            <ul>
+              <li>
+                <a [class.active]="isListing" href="javascript:void(0)" (click)="onListing()">
+                  <i class="listing"></i>
+                </a>
+              </li>
+              <li>
+                <a [class.active]="isMasonry" href="javascript:void(0)" (click)="onMasonry()">
+                  <i class="masonry"></i>
+                </a>
+              </li>
+              <li>
+                <a [class.active]="isGallery" href="javascript:void(0)" (click)="onGallery()">
+                  <i class="cube"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-12 gellery-section" *ngIf="isGallery">
+          <!--                    gallery view for sidenav-->
+          <div class="gellery-view-box" *ngFor="let vfl of viewfoolist">
+            <div class="model-pic">
+              <a href="javascript:void(0)"><img src="{{serviceUrl}}/{{vfl.coverimage}}" alt="Sarah" /></a>
+              <div class="connect-with-sarah">
+                <ul>
+                  <li>
+                    <a href="javascript:void(0)" title="View"><i class="view"></i></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" title="View"><i class="comment"></i></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" title="View"><i class="connect"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 gellery-section" *ngIf="isMasonry">
+          <div class="masonry-box" *ngFor="let vfl of viewfoolist">
+            <div class="masonry-pic">
+              <a href="javascript:void(0)"><img src="{{serviceUrl}}/{{vfl.coverimage}}" /> </a>
+              <div class="connect-with-sarah">
+                <ul>
+                  <li>
+                    <a href="#" title="View"><i class="view"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Comment"><i class="comment"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Connect"><i class="connect"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 gellery-section" *ngIf="isListing">
+          <div class="sarah-shoot" *ngFor="let vfl of viewfoolist">
+            <div class="model-pic">
+              <a href="javascript:void(0)"><img src="{{serviceUrl}}/{{vfl.coverimage}}" alt="Sarah" /></a>
+              <div class="connect-with-sarah">
+                <ul>
+                  <li>
+                    <a href="#" title="View"><i class="view"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Comment"><i class="comment"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Connect"><i class="connect"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="shoot-details">
+              <h4>Sarah studio fashion shoot</h4>
+              <p class="headshots"><i class="folder"></i> &nbsp;
+                <span *ngIf="vfl.folderid">{{vfl.folderid.foldername}}</span>
+              </p>
+              <p><i class="pin"></i>&nbsp;{{vfl.tags}}</p>
+              <p><i class="calendar"></i>&nbsp;{{vfl.createdAt| date:'mediumDate'}}</p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="load-more">
+          <a href="#" class="btn btn-default">Load more</a>
+        </div>
+
+        <footer>
+          <div class="copyright-note">
+            <p>© 2016 Users settings in homepage settings</p>
+          </div>
+          <div class="footer-logo">
+            <a href="#"><img src="../img/public_views/footer_logo.png" alt="ViewFoo logo"></a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- For Topbar Settings -->
+  <topbarnav *ngIf="userhomesettings.navposition=='top'"
+  [folderlist]="folderlist"
+  [menuBackgroundcolor]="userhomesettings.menucolor"
+  [fontcolor]="userhomesettings.fontcolor" (folderchange)="getPublicViewfoolist($event)"></topbarnav>
+
+  <section class="content-wrapper publicviewwithtopnav" *ngIf="userhomesettings.navposition=='top'">
+    <div class="tile-view-template">
+      <div class="tile-section">
+        <div class="col-md-12 gallerylen-belt">
+          <div class="gallery-len">
+            <a href="#"><img src="../img/public_views/gallery_len.png" alt="Gallery Len" /></a>
+          </div>
+          <div class="different-view" *ngIf="userhomesettings.viewfoooption == 'true'">
+            <ul>
+              <li>
+                <a [class.active]="isListing" href="javascript:void(0)" (click)="onListing()">
+                  <i class="listing"></i>
+                </a>
+              </li>
+              <li>
+                <a [class.active]="isMasonry" href="javascript:void(0)" (click)="onMasonry()">
+                  <i class="masonry"></i>
+                </a>
+              </li>
+              <li>
+                <a [class.active]="isGallery" href="javascript:void(0)" (click)="onGallery()">
+                  <i class="cube"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 gellery-section" *ngIf="isGallery">
+          <div class="gellery-view-box" *ngFor="let vfl of viewfoolist">
+            <div class="model-pic">
+              <a href="javascript:void(0)"><img src="{{serviceUrl}}/{{vfl.coverimage}}" alt="Sarah" /></a>
+              <div class="connect-with-sarah">
+                <ul>
+                  <li>
+                    <a href="#" title="View"><i class="view"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="View"><i class="comment"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="View"><i class="connect"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 gellery-section" *ngIf="isMasonry">
+          <div class="masonry-box" *ngFor="let vfl of viewfoolist">
+            <div class="masonry-pic">
+              <a href="javascript:void(0)"><img src="{{serviceUrl}}/{{vfl.coverimage}}" /> </a>
+              <div class="connect-with-sarah">
+                <ul>
+                  <li>
+                    <a href="#" title="View"><i class="view"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Comment"><i class="comment"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Connect"><i class="connect"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 gellery-section" *ngIf="isListing">
+          <div class="sarah-shoot" *ngFor="let vfl of viewfoolist">
+            <div class="model-pic">
+              <a href="javascript:void(0)"><img src="{{serviceUrl}}/{{vfl.coverimage}}" alt="Sarah" /></a>
+              <div class="connect-with-sarah">
+                <ul>
+                  <li>
+                    <a href="#" title="View"><i class="view"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Comment"><i class="comment"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" title="Connect"><i class="connect"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="shoot-details">
+              <h4>Sarah studio fashion shoot</h4>
+              <p class="headshots"><i class="folder"></i>&nbsp;
+                <span *ngIf="vfl.folderid">{{vfl.folderid.foldername}}</span>
+              </p>
+              <p><i class="pin"></i>&nbsp;{{vfl.tags}}</p>
+              <p><i class="calendar"></i>&nbsp;{{vfl.createdAt| date:'mediumDate'}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="load-more">
+          <a href="javascript:void(0)" class="btn btn-default">Load more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer *ngIf="userhomesettings.navposition=='top'">
+    <div class="tile-section">
+      <div class="copyright-note">
+        <p>© 2016 Users settings in homepage settings</p>
+      </div>
+      <div class="footer-logo">
+        <a href="#"><img src="../img/public_views/footer_logo.png" alt="ViewFoo logo"></a>
+      </div>
+    </div>
+  </footer>
+</div>

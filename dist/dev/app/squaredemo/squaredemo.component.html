@@ -1,0 +1,45 @@
+
+<html>
+    <head>
+   
+        <style type="text/css">
+  .sq-input {
+    border: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    padding: 1px;
+  }
+  .sq-input--focus {
+    outline-width: 5px;
+    outline-color: #70ACE9;
+    outline-offset: -1px;
+    outline-style: auto;
+  }
+  .sq-input--error {
+    outline-width: 5px;
+    outline-color: #FF9393;
+    outline-offset: 0px;
+    outline-style: auto;
+  }
+        </style>
+
+    </head>
+    <body>
+
+        <h1>My Payment Form</h1>
+
+        <form id="form" novalidate method="post">
+            <label>Credit Card</label>
+            <div id="sq-card-number"></div>
+            <label>CVV</label>
+            <div id="sq-cvv"></div>
+            <label>Expiration Date</label>
+            <div id="sq-expiration-date"></div>
+            <label>Postal Code</label>
+            <div id="sq-postal-code"></div>
+            <input type="hidden" id="card-nonce" name="nonce">
+            <input type="submit" (click)="submitButtonClick()" id="card-nonce-submit">
+        </form>
+
+        <div id="errors"></div>
+    </body>
+</html>

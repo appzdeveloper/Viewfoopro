@@ -1,0 +1,74 @@
+<section class="content-wrapper">
+
+  <div class="container select-template">
+       <div id="countdown"></div>
+    <div class="row">
+      <div *ngIf="loading" style="margin: 150px auto; width: 50px;">
+        <i class='fa fa-spinner fa-spin'></i>
+
+  <div class="tile-view-template">
+    <div class="tile-section">
+        <div class="fix_sidebar" *ngIf="currentViewfoo.allowcomment == 'true' || currentViewfoo.allowsharing == 'true'">
+        <ul>
+          <li *ngIf="currentViewfoo.allowsharing == 'true'">
+            <a href="javascript:void(0)" (click)="onViewfooShare(currentViewfoo)"><i class="share"></i></a>
+          </li>
+          <li *ngIf="currentViewfoo.allowcomment == 'true'">
+             <a href="javascript:void(0)" title="View" (click)="onViewfooComment(currentViewfoo)"><i class="comment"></i></a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="row" *ngIf="currentViewfoo" style="margin-top: 30px;">
+        <div *ngFor="let container of containersSorted; let i=index;" class="{{container.colclass}}"
+         [class.galleryviewcontainer]="container.containertype == 'gallery'" [class.imageviewcontainer]="container.containertype != 'gallery'" [style.height]="container.heightSizeY + 'px'">
+
+          <gallaryview *ngIf="container.containertype == 'gallery'"
+          [currentViewfoo]="currentViewfoo" [container]="container" (changeComment)="onImageComment($event)" (changeShare)="onImageShare($event)"></gallaryview>
+
+           <carouselview *ngIf="container.containertype != 'gallery'" [currentViewfoo]="currentViewfoo" [container]="container" (changeComment)="onImageComment($event)" (changeShare)="onImageShare($event)"></carouselview>
+
+        </div>
+      </div>
+
+      <!-- <div class="row" *ngIf="currentViewfoo" *ngFor="let cols of arrayRows;let rowindex=index" style="margin-top: 30px;">
+        <div *ngFor="let container of cols; let i=index;" class="{{container.colclass}}"
+         [class.galleryviewcontainer]="container.containertype == 'gallery'" [class.imageviewcontainer]="container.containertype != 'gallery'" [style.height]="arrayRowsHeight[rowindex] + 'px'">
+
+          <gallaryview *ngIf="container.containertype == 'gallery'"  (changeComment)="onImageComment($event)" [imageinfoframe]="currentViewfoo.imageinfoframe" [container]="container"></gallaryview>
+
+           <carouselview *ngIf="container.containertype != 'gallery'" [imageinfoframe]="currentViewfoo.imageinfoframe"  [container]="container" ></carouselview>
+
+        </div>
+      </div> -->
+        <commentmodal [currViewfoo]="currViewfooComment" [currImage]="currViewfooImage"></commentmodal>
+        <sharemodal [currViewfoo]="currViewfooShare" [currImage]="currViewfooImageShare"></sharemodal>
+
+      <!-- Select Photo -->
+      <div class="selectphoto_modal">
+        <div class="modal fade" id="SelectPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Viewfoo Comment</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="comment">Comment:</label>
+                  <textarea class="form-control" rows="5" id="comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<div class="upload-section gellary-template" *ngIf="container">
+
+    <div class="gellery-title">                        
+        <h3>{{container.containertitle}}</h3>
+    </div>
+    <div class="upload-image" >         
+        <div class="img-block" #imgblock>
+            <ul class="displayImageBlock" id="preview_{{container.id}}">
+                <li class="displayImage fadeIn animated" [class.fadeOut]="containerimage.deleted"
+                    *ngFor="let containerimage of container.dispImageArray;let j=index" [class.dz-complete]="containerimage.isCompleted">
+                    <div *ngIf="!containerimage.isBlankImage">
+                        <div class="dz-image" style="cursor: pointer;"
+                             (click)="onClickPreview(j)">
+                            <img data-dz-thumbnail src="{{serviceUrl + '/upload/gallery/'+containerimage.imagename}}" alt=""/>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="pagination">                  
+                <pagination                 
+                    [itemsPerPage]="container.itemsPerPage"
+                    [attr.boundaryLinks]="true"
+                    [totalItems]="container.containerimages.length"       
+                    [gotoLastPage]="container.gotoLastPage"
+                    (pageChanged)="currentPageChanged($event, container)" 
+                    (numPages)="numberOfPages($event, container)"
+                    [attr.maxSize]="3"></pagination>                
+            </div>
+        </div>        
+    </div>
+</div> 

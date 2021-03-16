@@ -1,0 +1,276 @@
+
+    <div id="wrapper">
+        <div class="sidebar-wrapper">
+            <div class="toggle-menubtn">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" id="menu-toggle">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="#"><i class="home"></i></a></li>
+                <li class="dropdown" *ngFor="let fl of publicfolder">
+                    <a href="javascript:void(0);" *ngIf="fl.subfolder.length==0" (click)="getPublicViewfoolist(fl.id)">{{fl.foldername}}</a>
+                    <a href="javascript:void(0);" *ngIf="fl.subfolder.length>0" (click)="getPublicViewfoolist(fl.id)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{fl.foldername}}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul *ngIf="fl.subfolder.length>0" class="dropdown-menu glamour">
+                            <li  *ngFor="let sfl of fl.subfolder" (click)="getPublicViewfoolist(sfl.id)"><a href="javascript:void(0);">{{sfl.foldername}}</a></li>
+                        </ul>
+                </li>
+            </ul>
+            <div class="contact-us">
+                <ul>
+                    <li><i class="mobile"></i><p>622-223-2323</p></li>
+                    <li><i class="call"></i><p>622-223-2323</p></li>
+                </ul>
+            </div>
+            <div class="social-contact">
+                <ul>
+                    <li><a href="#"><i class="fb_icon"></i></a></li>
+                    <li><a href="#"><i class="twitter_icon"></i></a></li>
+                    <li><a href="#"><i class="googleplus_icon"></i></a></li>
+                    <li><a href="#"><i class="linkdin_icon"></i></a></li>
+                    <li><a href="#"><i class="mail_icon"></i></a></li>
+                    <li><a href="#"><i class="wish_icon"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="sidemenu-block">
+                
+                <div class="col-md-12 gallerylen-belt">
+                    <div class="gallery-len">
+                        <a href="#"><img src="../img/public_views/gallery_len.png" alt="Gallery Len" /></a>
+                    </div>
+                    <div class="different-view">
+                        <ul>
+                            <li><a href="#"><i class="listing"></i></a></li>
+                            <li><a href="#"><i class="masonry"></i></a></li>
+                            <li><a class="active" href="#"><i class="cube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 gellery-section">
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model1.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="View"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="View"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model2.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model3.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model4.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model5.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="View"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="View"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model6.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model7.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="View"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="View"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model8.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model9.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model10.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="View"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="View"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model11.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model12.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model13.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model14.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model15.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gellery-view-box">
+                        <div class="model-pic">
+                            <a href="#"><img src="../img/gellry_view/model7.jpg" alt="Sarah" /></a>
+                            <div class="connect-with-sarah">
+                                <ul>
+                                    <li><a href="#" title="View"><i class="view"></i></a></li>
+                                    <li><a href="#" title="Comment"><i class="comment"></i></a></li>
+                                    <li><a href="#" title="Connect"><i class="connect"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="load-more">
+                    <a href="#" class="btn btn-default">Load more</a>
+                </div>
+                
+                <footer>
+                    <div class="copyright-note">
+                        <p>© 2016 Users settings in homepage settings</p>
+                    </div>
+                    <div class="footer-logo">
+                        <a href="#"><img src="../img/public_views/footer_logo.png" alt="ViewFoo logo"></a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+

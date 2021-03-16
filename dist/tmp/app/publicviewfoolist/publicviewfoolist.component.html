@@ -1,0 +1,124 @@
+<!-- publicviewwithtopnav -->
+<section class="content-wrapper publicviewfoos" [class.sideblock-wrapper]="userhomesettings.navposition=='left'" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
+  <div class="tile-view-template">
+    <div class="tile-section">
+         <commentmodal [currViewfoo]="currViewfooComment"></commentmodal>
+         <sharemodal [currViewfoo]="currViewfooShare" [currImage]="currViewfooImageShare"></sharemodal>
+      <div class="col-md-12 gallerylen-belt">
+        <div class="gallery-len">
+          <a href="javascript:void(0)">
+            <span *ngIf="userhomesettings.islogo == 'text'">{{userhomesettings.logotext}}</span>
+            <img *ngIf="userhomesettings.islogo == 'image'" src="{{imageUrl}}/{{userhomesettings.logoimage}}" alt="Gallery Len" />
+          </a>
+        </div>
+        <div class="different-view" *ngIf="userhomesettings.viewfoooption == 'true'">
+          <ul>
+            <li>
+              <a [class.active]="isListing" href="javascript:void(0)" (click)="onListing()">
+                <i class="listing"></i>
+              </a>
+            </li>
+            <li>
+              <a [class.active]="isMasonry" href="javascript:void(0)" (click)="onMasonry()">
+                <i class="masonry"></i>
+              </a>
+            </li>
+            <li>
+              <a [class.active]="isGallery" href="javascript:void(0)" (click)="onGallery()">
+                <i class="cube"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12 gellery-section" *ngIf="isGallery">
+        <div class="gellery-view-box" *ngFor="let vfl of viewfoolist">
+          <div class="model-pic">
+            <!-- <img src="{{imageUrl}}/{{vfl.thumbcoverimage}}" alt="Sarah" /> -->
+            <a href="javascript:void(0)">
+                <img [src]="vfl.thumbcoverimage || vfl.coverimage || 'img/defaultviewfoo.jpg'"
+                 onError="this.src='img/defaultviewfoo.jpg'" alt="Sarah" />
+            </a>
+            <div class="connect-with-sarah">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" title="View" (click)="onViewfooDetail(vfl.id)"><i class="view"></i></a>
+                </li>
+                <li *ngIf="vfl.allowcomment == 'true'">
+                  <a href="javascript:void(0)" title="View" (click)="onViewfooComment(vfl)"><i class="comment"></i></a>
+                </li>
+                <li *ngIf="vfl.allowsharing == 'true'">
+                  <a href="javascript:void(0)" title="View" (click)="onViewfooShare(vfl)"><i class="connect"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 masonry-listing" *ngIf="isMasonry">
+        <div class="masonry-box" *ngFor="let vfl of viewfoolist">
+          <div class="masonry-pic">
+            <a href="javascript:void(0)">
+                <img [src]="vfl.coverimage || 'img/defaultviewfoo.jpg'"
+                 onError="this.src='img/defaultviewfoo.jpg'" /> </a>
+            <div class="connect-with-sarah">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" title="View"
+                  (click)="onViewfooDetail(vfl.id)"><i class="view"></i></a>
+                </li>
+                <li *ngIf="vfl.allowcomment == 'true'">
+                  <a href="javascript:void(0)" title="Comment" (click)="onViewfooComment(vfl)"><i class="comment"></i></a>
+                </li>
+                <li *ngIf="vfl.allowsharing == 'true'">
+                  <a href="javascript:void(0)" title="Connect" (click)="onViewfooShare(vfl)"><i class="connect"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 gellery-section" *ngIf="isListing">
+        <div class="sarah-shoot" *ngFor="let vfl of viewfoolist">
+          <div class="model-pic">
+            <img [src]="vfl.thumbcoverimage || vfl.coverimage || 'img/defaultviewfoo.jpg'"
+             onError="this.src='img/defaultviewfoo.jpg'" alt="Sarah" />
+
+            <!-- <a href="javascript:void(0)">
+                <img src="{{imageUrl}}/{{vfl.thumbcoverimage}}" alt="Sarah" />
+            </a> -->
+            <div class="connect-with-sarah">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" title="View"
+                  (click)="onViewfooDetail(vfl.id)"><i class="view"></i></a>
+                </li>
+                <li *ngIf="vfl.allowcomment == 'true'">
+                  <a href="javascript:void(0)" title="Comment" (click)="onViewfooComment(vfl)"><i class="comment"></i></a>
+                </li>
+                <li *ngIf="vfl.allowsharing == 'true'">
+                  <a href="javascript:void(0)" title="Connect" (click)="onViewfooShare(vfl)"><i class="connect"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="shoot-details">
+            <h4>{{vfl.viewfootitle}}</h4>
+            <p class="headshots"><i class="folder"></i>&nbsp;
+              <span *ngIf="vfl.folderid">{{vfl.folderid.foldername}}</span>
+            </p>
+            <p><i class="pin"></i>&nbsp;{{vfl.tags}}</p>
+            <p><i class="calendar"></i>&nbsp;{{vfl.createdAt| date:'mediumDate'}}</p>
+          </div>
+        </div>
+      </div>
+      <div [style.visibility]="viewfooloading?'visible':'hidden'" class="load-more">
+        <a href="javascript:void(0)" class="btn btn-default" (click)="loadmoreviewfoo()">Load more
+          <i class='fa fa-spinner fa-spin'></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

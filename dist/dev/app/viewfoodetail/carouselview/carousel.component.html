@@ -1,0 +1,108 @@
+<div class="upload-section viewfoo-carousel-view">
+    <div class="gellery-title"> 
+        <div class="form-group">
+            <input type="text" placeholder="Carousel container title" #title 
+                [(ngModel)]="container.containertitle" class="form-control" (blur)="onUpdateContainer(container.containertitle)">
+        </div>
+        <a href="#"></a>
+    </div>
+    <div class="upload-image">    
+        <h3>Upload images here</h3>
+        <div class="up-button">
+            <a href="javascript:void(0)" class="btn btn-default" id="upload_image_{{container.id}}" 
+               [style.opacity]="container.opacity?0:1">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                Upload more</a>
+            <a href="javascript:void(0)">
+                <img src="img/build_viewfoo/close_icon.png" (click)="onDeleteContainer()" 
+                     *ngIf="!container.deleting"/>
+                <i *ngIf="container.deleting" class='fa fa-spinner fa-spin'></i>
+            </a>
+        </div>
+
+        <div class="img-block second-img" #imgblock>
+
+            <div class="displayImageBlock" >
+                <div class="displayImage fadeIn animated" *ngIf="containerimage" 
+                 [class.fadeOut]="containerimage.deleted"                                           
+                 [class.dz-complete]="containerimage.isCompleted">
+                    <div class="first-pic" *ngIf="!containerimage.isBlankImage">
+                        <img class="previewimg corousel-img" data-dz-thumbnail src="{{containerimage.imagename}}" alt=""
+                             (click)="onClickPreview(container.currentPage-1)"/>
+                        <!--<img src="img/select_template/third_view_icon.png" alt=""/>-->
+                        <div class="slide-nav" *ngIf="containertype=='carousel'">
+                            <a *ngIf="container.currentPage!=1" class="left-arrow" (click)="previousPage($event, container)" style="cursor:pointer;"></a> 
+                            <a *ngIf="container.currentPage!=container.totalImageArray.length" class="right-arrow" (click)="nextPage($event, container)" style="cursor:pointer;"></a> 
+                        </div>
+                        <!--                    <div class="dz-image" style="cursor: pointer">
+                                            </div>-->
+                        <div class="dz-progress" *ngIf="!containerimage.isCompleted">
+                            <span class="dz-upload" [style.width]="containerimage.progress"></span>
+                        </div>                                            
+                        <div class="preview-details">
+                            <i class="glyphicon glyphicon-trash" *ngIf="!containerimage.deleting"
+                               (click)="containerImageDelete(container.id, containerimage.id,container.currentPage-1)" ></i>
+                            <i *ngIf="containerimage.deleting" class='fa fa-spinner fa-spin'></i>
+                            <div class="dz-size" data-dz-size></div>
+                        </div>
+                    </div>
+                    <div class="first-pic" *ngIf="containerimage.isBlankImage">
+                        <img class="corousel-img" src="img/select_template/third_view_icon.png" alt=""/>
+                        <div class="slide-nav" *ngIf="containertype=='carousel'">
+                            <a class="left-arrow" ></a> 
+                            <a class="right-arrow"></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">           
+                <pagination 
+                    [currentPage]="container.currentPage1"
+                    [itemsPerPage]="container.itemsPerPage"
+                    [attr.boundaryLinks]="true"
+                    [totalItems]="container.containerimages.length"       
+                    [gotoLastPage]="container.gotoLastPage"
+                    [isCarousel]= "(containertype=='carousel')"
+                    (pageChanged)="currentPageChanged($event, container)" 
+                    (numPages)="numberOfPages($event, container)"
+                    [attr.maxSize]="3"></pagination>               
+            </div>            
+        </div>
+
+        <!--                <div class="img-block second-img" #imgblock>
+                            <div id="carouselholder_{{container.id}}">
+                                <carousel [interval]="slideInterval" 
+                                    [index]="slideIndex" 
+                                    [wrap]="slideWrap" 
+                                    [pause]="slidePause" 
+                                    [no-transition]="slideNoTransition"
+                                    (indexchange)="onIndexChange($event)" 
+                                    (slidestart)="onSlideStart()" 
+                                    (slideend)="onSlideEnd()">
+                                    <carousel-slide *ngFor="let containerimage of container.totalImageArray">
+                                        <img style="width: 800px; height: 400px;" src="http://placekitten.com/800/400">
+                                    </carousel-slide>
+                                </carousel>
+                            </div>
+                        </div>-->
+
+        <form class='myDropzone' id="form_{{container.id}}">
+            <input type="hidden" value="{{container.id}}" name='containerid' />
+            <input type="hidden" value="{{container.viewfooid}}" name='viewfooid' />
+            <input type="hidden" value="{{loginUser.id}}" name='userid' />            
+            <div class="dropzone drag-image " id='dzph_{{container.id}}' [style.opacity]="container.opacity"  >                
+                <div class="upload-img-content">
+                    <i class="upload-files"></i>
+                    <div class="dz-default dz-message">
+                        <span>Drop files here to upload
+                            <br>
+                            Or
+                            <br>
+                            click to upload files</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="resize-icon"></div>
+    </div>
+</div>

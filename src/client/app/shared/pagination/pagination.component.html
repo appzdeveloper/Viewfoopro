@@ -1,0 +1,26 @@
+<div *ngIf="!isCarousel && !isPublicViewfoo">
+  <div *ngFor="let pg of pages" [class.active]="pg.active" [class.disabled]="disabled&&!pg.active" class="one pagination-page page-item" (click)="selectPage(pg.number, $event)">
+    <div *ngIf="!isCarousel">{{pg.text}}</div>
+  </div>
+</div>
+<div *ngIf="isCarousel && !isPublicViewfoo">
+  <div *ngFor="let pg of pages" [class.active]="pg.active" [class.disabled]="disabled&&!pg.active" class="carousel-pagination" (click)="selectPage(pg.number, $event)">
+    <div *ngIf="!isCarousel">{{pg.text}}</div>
+  </div>
+</div>
+<div class="pagination" *ngIf="isPublicViewfoo && !isCarousel">
+    <ul>
+        <li *ngFor="let pg of pages">
+            <a href="javascript:void(0)" [class.active]="pg.active" (click)="selectPage(pg.number, $event)">{{pg.text}}
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="pagination carousel" *ngIf="isPublicViewfoo && isCarousel">
+    <ul>
+        <li *ngFor="let pg of pages">
+            <a href="javascript:void(0)" [class.active]="pg.active" (click)="selectPage(pg.number, $event)">
+            </a>
+        </li>
+    </ul>
+</div>

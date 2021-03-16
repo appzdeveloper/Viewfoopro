@@ -1,0 +1,62 @@
+<div class="sidebar-wrapper" [style.background]="menuBackgroundcolor" [style.color]="fontcolor">
+  <div class="toggle-menubtn">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="navbar" aria-expanded="false" aria-controls="navbar" id="menu-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li>
+      <a href="javascript:void(0)" (click)="setPublicViewfooid(0,0)"><i class="home"></i></a>
+    </li>
+    <li *ngFor="let fl of _folderlist" [class.dropdown]="fl.subfolder.length>0">
+
+      <a href="javascript:void(0);" *ngIf="fl.subfolder.length==0" (click)="setPublicViewfooid(fl.id,fl.id)" [style.color]="fontcolor">{{fl.foldername}}</a>
+
+      <a href="javascript:void(0);" *ngIf="fl.subfolder.length>0" (click)="setPublicViewfooid(fl.id,fl.id)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" [style.color]="fontcolor">{{fl.foldername}}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+
+      <ul *ngIf="fl.subfolder.length>0" class="dropdown-menu glamour" [style.background]="menuBackgroundcolor">
+        <li *ngFor="let sfl of fl.subfolder" (click)="setPublicViewfooid(sfl.id,fl.id)">
+          <a href="javascript:void(0);" [style.color]="fontcolor">{{sfl.foldername}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <div class="contact-us">
+    <ul>
+      <li *ngIf="userhomesettings.mobilenumber">
+          <i class="mobile"></i>
+        <p>{{userhomesettings.mobilenumber}}</p>
+      </li>
+      <li *ngIf="userhomesettings.officenumber">
+          <i class="call"></i>
+        <p>{{userhomesettings.officenumber}}</p>
+      </li>
+    </ul>
+  </div>
+  <div class="social-contact">
+    <ul>
+      <li *ngIf="userhomesettings.facebook">
+        <a href="{{userhomesettings.facebook}}" target="_blank"><i class="fb_icon"></i></a>
+      </li>
+      <li *ngIf="userhomesettings.twitter">
+        <a href="{{userhomesettings.twitter}}"><i class="twitter_icon"></i></a>
+      </li>
+      <li *ngIf="userhomesettings.googleplus">
+        <a href="{{userhomesettings.googleplus}}"><i class="googleplus_icon"></i></a>
+      </li>
+      <li *ngIf="userhomesettings.linkdin">
+        <a href="{{userhomesettings.linkdin}}"><i class="linkdin_icon"></i></a>
+      </li>
+      <li *ngIf="userhomesettings.useremail">
+        <a href="mailto:{{userhomesettings.useremail}}?Subject=Reference from Viewfoo"><i class="mail_icon"></i></a>
+      </li>
+      <!-- <li>
+        <a href="javascript:void(0)"><i class="wish_icon"></i></a>
+      </li> -->
+    </ul>
+  </div>
+</div>

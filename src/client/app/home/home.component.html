@@ -1,0 +1,61 @@
+<section *ngIf="loginUser.id" class="content-wrapper" infinite-scroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="500"
+            (scrolled)="onScroll()">
+  <div class="header-bottombelt">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="view-pageicon">
+          <ul>
+            <li>
+              <a href="javascript:void(0);" (click)="settemplateview('masonry')" class="tile" [class.active]="isTile" id="masonry"></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" (click)="settemplateview('tile')" class="listing" [class.active]="isListing" id="tile"></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" (click)="settemplateview('gallary')" class="cube" [class.active]="isGallary" id="gallary"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="btn-group viewfoo-dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle all-viewfoos" data-toggle="dropdown">
+            <i class="icon-eye"></i>
+            <span>{{viewfooTypeText}} &nbsp; <span class="caret"></span> </span>
+          </button>
+          <ul class="dropdown-menu viewfoo-default" role="menu">
+            <!-- <li class="public" (click)="onClickViewfooType('all')">
+              <a href="javascript:void(0);"><i class=""></i>View All ViewFoos</a>
+            </li> -->
+            <h5 (click)="onClickViewfooType('all')" style="cursor:pointer;"> View All ViewFoos (Default)</h5>
+            <li class="public" (click)="onClickViewfooType('public')">
+              <a href="javascript:void(0);"><i class=""></i>View All Public</a>
+            </li>
+            <li class="lock-icon" (click)="onClickViewfooType('private')">
+              <a href="javascript:void(0);"><i class=""></i>View All Private</a>
+            </li>
+            <li class="public" (click)="onClickViewfooType('draft')">
+              <a href="javascript:void(0);"><i class=""></i>View All Draft</a>
+            </li>
+          </ul>
+        </div>
+        <div class="add-viewfoo">
+          <a href="javascript:void(0);" (click)="selecttemplate()" class="btn btn-default">Add ViewFoo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <centertileview (onDelViewfoo)="onDelViewfooHome($event)" *ngIf="isTile" [viewfoolist]="viewfoolist"></centertileview>
+  <centerlistview (onDelViewfoo)="onDelViewfooHome($event)" *ngIf="isListing" [viewfoolist]="viewfoolist"></centerlistview>
+  <centergallaryview (onDelViewfoo)="onDelViewfooHome($event)" *ngIf="isGallary" [viewfoolist]="viewfoolist"></centergallaryview>
+
+
+  <div [style.visibility]="viewfooloading?'visible':'hidden'" class="load-more">
+    <a href="javascript:void(0)" class="btn btn-default" (click)="loadmoreviewfoo()">
+      Load more
+      <i class='fa fa-spinner fa-spin'></i>
+    </a>
+  </div>
+</section>

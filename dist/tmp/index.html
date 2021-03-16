@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="<%= APP_BASE %>">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+      <%= APP_TITLE %>
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/cropper.css">
+
+
+    <link rel="stylesheet" href="css/dropzone.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/customstyle.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <script src="js/viewfoo.js"></script>
+
+    <script src="js/cropper.js"></script>
+    <script src="js/croppercustom.js"></script>
+    <script src="js/croppercover.js"></script>
+    <script src="js/cropperlogo.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/jscolor.js"></script>
+
+    <script src="js/blob-util.js"></script>
+
+    <script src="js/common.js"></script>
+    <!-- <script src="js/squarepayment.js"></script> -->
+
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+   <!-- <script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script>-->
+
+    <!----------- FancyBox Start ------------->
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+    <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+    <!----------- FancyBox End------------->
+
+    <!-- Owl Carousel Assets -->
+    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+
+    <script src="/owl-carousel/owl.carousel.js"></script>
+    <!-- Owl Carousel Assets End -->
+
+    <link rel="stylesheet" href="css/croppercustom.css">
+
+    <!-- inject:css -->
+    <!-- endinject -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="//platform.linkedin.com/in.js" type="text/javascript">
+      lang: en_US
+    </script>
+    <link rel="stylesheet" href="css/viewfoo.css">
+  </head>
+
+  <body>
+
+    <app-container>
+      <div class="vertical-center">
+        <img src="img/ezgif-3945677725.gif" style="width: 50px;margin: 0 auto;">
+      </div>
+    </app-container>
+
+    <script>
+      // function.name (all IE)
+      // Remove once https://github.com/angular/angular/issues/6501 is fixed.
+      /*! @source http://stackoverflow.com/questions/6903762/function-name-not-supported-in-ie*/
+      if (!Object.hasOwnProperty('name')) {
+        Object.defineProperty(Function.prototype, 'name', {
+          get: function() {
+            var matches = this.toString().match(/^\s*function\s*((?![0-9])[a-zA-Z0-9_$]*)\s*\(/);
+            var name = matches && matches.length > 1 ? matches[1] : "";
+            // For better performance only parse once, and then cache the
+            // result through a new accessor for repeated access.
+            Object.defineProperty(this, 'name', {
+              value: name
+            });
+            return name;
+          }
+        });
+      }
+    </script>
+
+    <script>
+      // Fixes undefined module function in SystemJS bundle
+      function module() {}
+    </script>
+
+    <!-- shims:js -->
+    <!-- endinject -->
+
+    <% if (ENV === 'dev') { %>
+      <script>
+        System.config(<%=
+                JSON.stringify(SYSTEM_CONFIG, null, 2)
+                %>)
+      </script>
+      <% } %>
+
+        <!-- libs:js -->
+        <!-- endinject -->
+
+        <!-- inject:js -->
+        <!-- endinject -->
+
+        <% if (ENV === 'dev') { %>
+          <script>
+            System.import('<%= BOOTSTRAP_MODULE %>')
+              .catch(function(e) {
+                console.error(e,
+                  'Report this error at https://github.com/mgechev/angular2-seed/issues');
+              });
+          </script>
+          <% } %>
+
+  </body>
+
+</html>

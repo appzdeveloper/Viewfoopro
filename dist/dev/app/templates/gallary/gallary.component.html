@@ -1,0 +1,96 @@
+<div class="upload-section gellary-template" *ngIf="container">
+
+    <div class="gellery-title">
+        <div class="form-group">
+            <input type="text" placeholder="ViewFoo gallery container title" #title
+                   [(ngModel)]="container.containertitle" class="form-control" (blur)="onUpdateContainer(container.containertitle)">
+        </div>
+        <a class="gridMover" href="javascript:void(0)"><i class="fa fa-arrows"></i></a>
+    </div>
+    <div class="upload-image" >
+        <h3>Upload <br> images here</h3>
+        <div class="up-button">
+            <a href="javascript:void(0)" class="btn btn-default" id="upload_image_{{container.id}}"
+               [style.opacity]="container.opacity?0:1">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                Upload more</a>
+            <a href="javascript:void(0)">
+                <img src="img/build_viewfoo/close_icon.png" (click)="onDeleteContainer()"
+                     *ngIf="!container.deleting"/>
+                <i *ngIf="container.deleting" class='fa fa-spinner fa-spin'></i>
+            </a>
+        </div>
+        <div class="img-block" #imgblock>
+            <ul class="displayImageBlock" id="preview_{{container.id}}">
+                <!--dz-image-preview-->
+                <li class="displayImage  fadeIn animated"
+                    [class.fadeOut]="containerimage.deleted"
+                    *ngFor="let containerimage of container.dispImageArray;let j=index" [class.dz-complete]="containerimage.isCompleted">
+                    <div *ngIf="!containerimage.isBlankImage">
+                        <div class="dz-image" style="cursor: pointer;"
+                             (click)="onClickPreview(j)">
+                            <img data-dz-thumbnail src="{{containerimage.imagename}}" alt=""/>
+                        </div>
+                        <div class="dz-progress" *ngIf="!containerimage.isCompleted">
+                            <span class="dz-upload" [style.width]="containerimage.progress"></span>
+                        </div>
+                        <div class="dz-error-message" data-dz-errormessage></div>
+                        <div class="dz-success-mark"></div>
+                        <div class="dz-error-mark"></div>
+                        <div class="preview-details">
+                            <i class="glyphicon glyphicon-trash" *ngIf="!containerimage.deleting"
+                               (click)="containerImageDelete(container.id, containerimage.id, j)" ></i>
+                            <i *ngIf="containerimage.deleting" class='fa fa-spinner fa-spin'></i>
+                            <div class="dz-size" data-dz-size></div>
+                        </div>
+                    </div>
+                    <div *ngIf="containerimage.isBlankImage">
+                        <div class="first-pic">
+                            <img src="img/build_viewfoo/pic1.png" alt="">
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="pagination">
+                <pagination
+                    [itemsPerPage]="container.itemsPerPage"
+                    [attr.boundaryLinks]="true"
+                    [totalItems]="container.containerimages.length"
+                    [gotoLastPage]="container.gotoLastPage"
+                    (pageChanged)="currentPageChanged($event, container)"
+                    (numPages)="numberOfPages($event, container)"
+                    [attr.maxSize]="3"></pagination>
+            </div>
+        </div>
+        <form class='myDropzone' id="form_{{container.id}}">
+            <input type="hidden" value="{{container.id}}" name='containerid' />
+            <input type="hidden" value="{{container.viewfooid}}" name='viewfooid' />
+            <input type="hidden" value="{{loginUser.id}}" name='userid' />
+            <div class="dropzone drag-image " id='dzph_{{container.id}}' [style.opacity]="container.opacity"  >
+                <div class="upload-img-content">
+                    <i class="upload-files"></i>
+                    <div class="dz-default dz-message">
+                        <span>Drop files here to upload
+                            <br>
+                            Or
+                            <br>
+                            click to upload files</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="resize-icon"></div>
+    </div>
+</div>
+
+<!--<div class="gallery-btn-box">
+    data-toggle="modal" data-target="#myModal"
+    <button type="button" class="btn btn-primary pre-btn openPreviewImage"
+            (click)="onClickPreview(0)">
+        Preview
+    </button>
+</div>-->
+<!--<div class="dz-details">
+    <div class="dz-filename" data-dz-name></div>
+</div>-->

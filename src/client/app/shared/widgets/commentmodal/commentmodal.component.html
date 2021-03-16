@@ -1,0 +1,64 @@
+<!-- Comment Photo -->
+<div class="commentphoto_modal">
+  <div class="modal fade" id="commentphoto_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Viewfoo Comment</h4>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="viewfoocomment" #viewfoocomment1="ngForm" (ngSubmit)="doComment()">
+            <div class="form-group user_name">
+              <label for="name">Name</label>
+              <input class="form-control" formControlName="viewfoocommentname" id="viewfoocommentname1" type="text" placeholder="" class="form-control">
+              <div class="text text-danger" *ngIf="viewfoocommentname.touched">
+                <div *ngIf="viewfoocommentname.hasError('required')"> Name is required </div>
+              </div>
+            </div>
+            <div class="form-group user_name">
+              <label for="comment">Email</label>
+              <input class="form-control" formControlName="viewfoocommentemail" id="viewfoocommentemail1" type="text" placeholder="" class="form-control">
+              <div class="text text-danger" *ngIf="viewfoocommentemail.touched">
+                <div *ngIf="viewfoocommentemail.hasError('required')"> Email is required </div>
+                <div *ngIf="viewfoocommentemail.hasError('invalidEmail')"> Email is invalid </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="comment">Add your comment</label>
+              <textarea class="form-control" formControlName="viewfoocommenttext" id="viewfoocommenttext1" rows="5" id="comment"></textarea>
+              <div class="text text-danger" *ngIf="viewfoocommenttext.touched">
+                <div *ngIf="viewfoocommenttext.hasError('required')"> Comment is required </div>
+              </div>
+            </div>
+            <button type="submit" [disabled]='!viewfoocomment.valid' class="btncommentsubmit btn btn-default"> Comment
+                <i class='fa fa-spinner fa-spin' *ngIf="commentaddloading"></i>
+            </button>
+            <p class="pull-right" style="line-height: 50px;" *ngIf="loading">
+                Loading comments <i class='fa fa-spinner fa-spin'></i>
+            </p>
+
+          </form>
+          <div class="pre_comment">
+            <ul>
+              <li *ngFor="let cmt of viewfoocomments">
+                <div class="comments">
+                  <!-- <div class="commented_user">
+                    <img src="../../../img/dashboard_logo.png" alt="{{cmt.username}}" />
+                  </div> -->
+                  <div class="their_thought">
+                    <h3>{{cmt.username}}</h3>
+                    <p>{{cmt.actiondata}}</p>
+                    <span>{{cmt.createdAt | date:'medium'}}</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

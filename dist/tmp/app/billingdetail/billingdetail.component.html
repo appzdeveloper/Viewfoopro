@@ -1,0 +1,271 @@
+
+  <section class="content-wrapper">
+        <div class="header-bottombelt">
+           <div class="container-fluid">
+                <div class="row">
+                    <div class="billing_title">
+                        <i class="billing-icon"></i>
+                        <h1>Billing Details</h1>
+                    </div>
+               </div>
+           </div>
+       </div>
+        <div class="container select-template">
+            <div class="row">
+                <div class="personal-setting"> 
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="personal-note">
+                                
+                              <p>As of today, you still have <strong>{{day}} days</strong> until the end of your free trial and they will remain valid after entering your billing details. Once your trial expires you will be charged the amount corresponding to the plan.</p>
+                         
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-content">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="setting-left">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="payment-info">
+                                        <div class="pay-monthly">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="CBpaymenttype" #CBmonthly name="CBmonthly" value="monthly" checked (change)="chngpaymenttype(CBmonthly.value)">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                    <p class="cheked monthly"><i class="fa fa-usd" aria-hidden="true"></i>12/ monthly</p>
+                                                    
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="pay-anually">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="CBpaymenttype" #CByearly name="CByearly" value="yearly" (change)="chngpaymenttype(CByearly.value)">
+                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                    <p class="cheked yearly"><i class="fa fa-usd" aria-hidden="true"></i>120/ anually</p>
+                                                    <p>"..and get 2 FREE months"</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="info-form">
+                                        <div class="form-top-belt">
+                                            <p class="order">Order Total</p>
+                                            <p class="ordertotal" *ngIf="ismonthly"><i class="fa fa-usd" aria-hidden="true"></i>12/monthly</p>
+                                              <p class="ordertotal"  *ngIf!="ismonthly"><i class="fa fa-usd" aria-hidden="true"></i>120/anually</p>
+                                        </div>
+                                             <form id ="billingform" [formGroup]="billform" (ngSubmit)="updatebill()">
+                                            <div class="contact-info">
+                                                <legend>Contact info</legend>
+                                            
+                                           
+                                                <div class="form-group">
+                                                    <!--<label for="input-one"><strong>Input One:</strong></label><br />-->
+                                                    <input name="input-one-name" formControlName="firstname" type="text" size="20" id="input-one" class="text form-control" placeholder="First Name" />
+                                                         <div class="text text-danger pull-right small" *ngIf="firstname.touched">
+                                                         <div *ngIf="firstname.hasError('required')"> First name is required </div>
+                                                         </div>
+                                                </div>
+                                             
+                                                <div class="form-group">
+                                                    <input name="input-one-name" formControlName="lastname"  type="text" size="20" id="input-one" class="text form-control" placeholder="Last Name" />
+                                                      <div class="text text-danger pull-right small" *ngIf="lastname.touched">
+                                                         <div *ngIf="lastname.hasError('required')"> Last name is required </div>
+                                                         </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="input-one-name" formControlName="email" type="email" size="20" id="input-one" class="text form-control" placeholder="Email" />
+                                                     <div class="text text-danger pull-right small" *ngIf="email.touched">
+                                                      <div *ngIf="email.hasError('required')"> Email is required </div>
+                                                      <div *ngIf="email.hasError('invalidEmail')"> Email is invalid  </div>
+                                                      </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="input-one-name" formControlName="businessname"  type="text" size="20" id="input-one" class="text form-control" placeholder="Business Name" />
+                       
+                                                     <div class="text text-danger pull-right small" *ngIf="businessname.touched">
+                                                      <div *ngIf="businessname.hasError('required')"> Business Name is required </div>
+                                                         
+                                                     </div>
+                                                </div>
+                                                 <!--   </form> -->
+                                                    
+                                            </div> 
+                                            <div class="contact-info billing-info">
+                                            <legend>Billing info</legend>
+                                           <!-- <form [ngFormModel]="billform" #b="ngForm">-->
+                                            <div class="form-group">
+                                                <!--<label for="input-one"><strong>Input One:</strong></label><br />-->
+                                                <input name="input-one-name" formControlName="bill_firstname"  
+                                                       type="text" size="20" id="input-one" class="text form-control" 
+                                                       placeholder="First Name" value="Abc"/>
+                                                 <div class="text text-danger pull-right small" 
+                                                      *ngIf="bill_firstname.touched">
+                                                      <div *ngIf="bill_firstname.hasError('required')"> First Name is required </div>
+                                                      </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="input-one-name" formControlName="bill_lastname"  
+                                                       type="text" size="20" id="input-one" class="text form-control" 
+                                                       placeholder="Last Name" value="Def"/>
+                                                <div class="text text-danger pull-right small" *ngIf="bill_lastname.touched">
+                                                      <div *ngIf="bill_lastname.hasError('required')"> Last Name is required </div>
+                                                      </div>
+                                            </div>
+                                            <div class="form-group credit">
+                                            
+                                               <input name="input-one-name"  
+                                                      type="number" min='1' maxlength="16" size="20"  
+                                                      id="sq-card-number"  class="credit form-control" 
+                                                      formControlName="cc_number" placeholder="Credit card number"  
+                                                     />
+                                                 <div class="text text-danger pull-right small" *ngIf="cc_number.touched">
+                                                      <div *ngIf="cc_number.hasError('required')"> Credit Card Number is required </div>
+                                                         <div *ngIf="cc_number.hasError('invalidCard')"> Enter 16 digit Card Number</div>
+                                                 </div>
+                                            </div>
+                                            <div class="form-group date-block">
+                                                <label class="expiry-date">Expire Date</label>
+                                           <!--  <input type="text" id="sq-expiration-date" name="expirydate" class="credit form-control"> -->
+                                               <div class="date-box">
+                                                    <select class="selectpicker date form-control" formControlName="expirydate" > 
+                                                      <option *ngFor="let m of month" [value]="m">{{m}}</option>
+                                                   
+                                                    </select>
+                                                    <span class="caret date-arrow"></span>
+                                                </div>
+                                       
+                                     
+                                                <div class="year-box">
+                                                    <select class="selectpicker year form-control" formControlName="expiryyear" >
+                                                      <option>2016</option>
+                                                      <option>2017</option>
+                                                      <option selected>2018</option>
+                                                      <option>2019</option>
+                                                      <option>2020</option>
+                                                      <option>2021</option>
+                                                    </select>
+                                                    <span class="caret year-arrow"></span>
+                                                </div>
+                                                 <input type="number" size="3" min='1' formControlName="ccv" max="999" id="sq-cvv" 
+                                                       class="cvv form-control" placeholder="CCV"
+                                                       />
+                                                 <div class="text text-danger pull-right small" *ngIf="ccv.touched">
+                                                      <div *ngIf="ccv.hasError('required')"> CVV is required </div>
+                                                       <div *ngIf="ccv.hasError('invalidCvv')"> Enter 3 digit Cvv</div>
+                                                 </div>
+                                     
+                                            </div>
+                                           
+                                         <!--  <div class="form-group credit">
+                                            
+                                           </div>-->
+                                           <!--<div>
+                                                <div *ngIf="invalidcard" class="text text-danger pull-right small">card information invalid</div>
+                                           </div>-->
+                                           <div class="form-group credit">
+                                            
+                                               <input name="input-one-name" type="text" formControlName="address" size="20" id="input-one"  class="credit form-control" placeholder="Address" />
+                                                <div class="text text-danger pull-right small" *ngIf="address.touched">
+                                                      <div *ngIf="address.hasError('required')"> Address is required </div>
+                                                 </div>
+                                           </div>
+                                           <div class="form-group app-suit">
+                                           
+                                               <input name="input-one-name" type="text" formControlName="app" size="20" id="input-one" 
+                                                        class="text form-control" 
+                                                      placeholder="App/Suite" />
+                                                   <div class="text text-danger pull-right small" *ngIf="app.touched">
+                                                      <div *ngIf="app.hasError('required')"> App/Suits is required </div>
+                                                 </div>
+                                           </div>
+                                            <div class="form-group app-suit">
+                                                <!----> 
+                                                <input name="input-one-name" type="text" formControlName="city" size="20" 
+                                                       id="input-one" 
+                                                       class="text form-control" placeholder="City" />
+                                                    <div class="text text-danger pull-right small" *ngIf="city.touched">
+                                                      <div *ngIf="city.hasError('required')"> City is required </div>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group state">
+                                                <select class="selectpicker form-control" formControlName="state" >
+                                                  <option disabled selected value="">Select state</option>
+                                                  <option>New York</option>
+                                                  <option>London</option>
+                                                </select>
+                                                <span class="caret state-arrow"></span>
+                                            </div>
+                                            <div class="form-group zip-postal">
+                                                <input name="input-one-name" formControlName="zipcode" type="number" size="20" 
+                                                       id="sq-postal-code" class="text form-control" 
+                                                        placeholder="Zip/Postal" 
+                                                        />
+                                                   <div class="text text-danger pull-right small" *ngIf="zipcode.touched">
+                                                      <div *ngIf="zipcode.hasError('required')"> Zip is required </div>
+                                                       <div *ngIf="zipcode.hasError('invalidZip')"> Enter 5 digit zip code </div>
+                                                   </div>
+                                            </div>
+                                            <div class="form-group country">
+                                               <select class="selectpicker form-control" formControlName="country" >
+                                                   <option disabled selected value="">Select Country</option>
+                                                  <option>United state</option>
+                                                  <option>England</option>
+                                                  <option>Germany</option>
+                                                </select>
+                                                <span class="country-arrow"></span>
+                                            </div>
+                        
+                                             <input type="hidden" id="card-nonce" name="nonce">
+                                           <div class="billing-update">
+                                                  <button type="submit"  
+                                                          class="btn btn-default" [disabled]='!billform.valid'> Update <i *ngIf="isloading" class='fa fa-spinner fa-spin'></i></button>
+                                           </div>
+                                          <!--  <a class="btn btn-default billing-update" href="javascript:void(0);" (click)="updatebill()">Update</a>-->
+                                        </div> 
+                                     </form>
+                                       <div  id="errors"></div>
+                                       <div *ngIf="ismessage" class="errorMessage">{{message}}</div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="setting-right">
+                                <div class="security-note">
+                                    <i class="secure-icon"></i>
+                                    <h3>This page is secure</h3>
+                                    <p>our connection to the ViewFoo is  always secure 
+                                        as we use the HTTPS protocol and a valid, trusted 
+                                        security certificate. Our subscription billing is 
+                                        handled by a <span>Level 1 PCI compliant payment 
+                                        provider.</span>
+                                    </p>
+                                </div>
+                                <div class="payment-block">
+                                    <ul class="debit-cards">
+                                        <li><a href="#"><i class="visa-card"></i></a></li>
+                                        <li><a href="#"><i class="master-card"></i></a></li>
+                                        <li><a href="#"><i class="american-card"></i></a></li>
+                                        <li><a href="#"><i class="discover-card"></i></a></li>
+                                        <li><a href="#"><i class="jcb-card"></i></a></li>
+                                    </ul>
+                                      <div class="payment-text">
+                                        <p>We accept MasterCard, VISA, JCB and Discover credit cards as ways to pay. </p>
+                                        <p>We do not accept POs, checks, or invoices to be paid at a later date. </p>
+                                        <p>We will email you a receipt each time your card is charged.</p>
+                                    </div>
+               
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    

@@ -1,0 +1,52 @@
+        <div class="tile-view-template">
+            <div class="tile-section">
+                <div class="listing_view">
+                    <ul>
+                        <li  *ngFor="let vf of viewfoolist;let viewfooindex=index;">
+                            <div class="listing_box">
+                                <img class="listimage" src="{{imageUrl}}/{{vf.coverimage}}"  alt="Model1">
+                                <div class="studioshoot_left">            
+                                    <h4>{{vf.viewfootitle}}</h4>
+                                    <p><i class="folder"></i><span *ngIf="vf.folderid">{{vf.folderid.foldername}}</span></p>
+                                    
+                                </div>
+                                <div class="studioshoot_right">            
+                                    <p><i class="calender"></i>{{vf.createdAt| date:'mediumDate'}}</p>
+                                    <p><i class="pin"></i>{{vf.tags}}</p>
+                                </div>
+                                <div class="connect-with-sarah">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0)" title="View" (click)="gotogallary(vf.id)"><i class="view"></i></a>
+                                        </li>
+                                        <li *ngIf="vf.allowcomment == 'true'">
+                                            <a href="javascript:void(0)" title="View" (click)="onViewfooComment(vf)"><i class="comment"></i></a>
+                                        </li>
+                                        <li *ngIf="vf.allowsharing == 'true'">
+                                            <a href="javascript:void(0)" title="View" (click)="onViewfooShare(vf)"><i class="connect"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="add_edit" *ngIf="loginUser.id == vf.userid">
+                                        <ul>
+                                            <li>
+                                                <a  href="javascript:void(0)" title="Edit" (click)="onEditViewfoo(vf.id)">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </li>
+                                            <li><a href="javascript:void(0)" title="Delete" (click)="onDeleteViewfoo(vf.id ,viewfooindex)">
+                                                    <i class="fa" [class.fa-trash]="!loading" [class.fa-spinner]="loading" [class.fa-spin]="loading">
+                                                    </i>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>                           
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+<commentmodal [currViewfoo]="currViewfooComment"></commentmodal>
+<sharemodal [currViewfoo]="currViewfooShare" [currImage]="currViewfooImageShare"></sharemodal>

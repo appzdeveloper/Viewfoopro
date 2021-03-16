@@ -1,0 +1,406 @@
+<topnav> </topnav>
+  <section class="content-wrapper">
+        <div class="header-bottombelt">
+           <div class="container-fluid">
+                <div class="row">
+                    <div class="public_title">
+                        <i class="public-icon"></i>
+                        <h1>Public homepage settings</h1>
+                    </div>
+               </div>
+           </div>
+       </div>
+        <div class="container homepage-setting">
+            <div class="row gridmain">
+                <div class="row subdomainshare">
+                   <h4>Your homepage URL: <a href="https://app.viewfoo.pro/users/{{loginUser.subdomain}}" target="_blank">https://app.viewfoo.pro/users/{{loginUser.subdomain}}</a></h4> (live and viewable to anyone with the link)
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="public_page_left">
+                        <div class="nav-position">
+                            <h4>Navigation position on your home page</h4>
+                            <p>Choose your personal preference for your menu layout. This is the navigation for your public folders that you choose to publish.</p>
+                            <div class="select-menu">
+                                <a href="javascript:void(0)" class="btn btn-default">Your public folders will go here.</a>
+                                <div class="menu-top">
+                                    <i class="menu_top_img"></i>
+                                    <span class="left-border" ></span>
+                                    <span class="left-arrow"></span>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" value="top" #cbmenutop class="CBmenustyle" [(ngModel)]="topnav" (change)="changemenustyle(cbmenutop.value)">
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                        Top menu
+                                      </label>
+                                      <a href="javascript:void(0)" class="btn btn-default">Preview</a>
+                                    </div>
+                                </div>
+                                 <div class="menu-left">
+                                    <i class="menu_left_img"></i>
+                                    <span class="right-border" ></span>
+                                     <span class="right-arrow"></span>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" #cbmenuleft class="CBmenustyle" value="left" [(ngModel)]="leftnav" (change)="changemenustyle(cbmenuleft.value)">
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                        Left menu
+                                      </label>
+                                      <a href="javascript:void(0)" class="btn btn-default">Preview</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="color-section">
+                            <div class="select-color">
+                                <div class="public-menu">
+                                    <h4>Choose your public menu color</h4>
+                                    <div class="pick-color">
+                                        <ul>
+                                            <!--<li><a class="white" href="javascript:void(0)" (click)="changemenucolor('white')"></a></li>-->
+                                            <!--<li><a class="black" href="javascript:void(0)" (click)="changemenucolor('black')"></a></li>-->
+                                                <li><a href="javascript:void(0)">
+                                                <input id="radio1" type="radio" checked="checked" value="1" name="radio" class="white" (click)="changemenucolor('white')">
+                                                <label for="radio1"><span><span></span></span></label>
+                                                </a></li>
+                                            <li><a href="javascript:void(0)">
+                                                <input id="radio2" type="radio" value="2" name="radio" (click)="changemenucolor('black')">
+                                                <label for="radio2"><span class="black"><span></span></span></label>
+                                                </a></li>
+                                            <li><a class="controlset">
+                                                <input class="jscolor" type="radio" value="#000000" name="radio" id="colormenu" placeholder="" (change)="changemenucolor('colormenu')">
+                                                <label for="radio3"><span id="colorinput"><span></span></span></label>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="public-font">
+                                    <h4>Choose your menu font color</h4>
+                                    <div class="pick-color">
+                                        <ul>
+                                           <!-- <li><a class="white" href="javascript:void(0)" (click)="changemenufontcolor('white')"></a></li>
+                                            <li><a class="black" href="javascript:void(0)" (click)="changemenufontcolor('black')"></a></li>-->
+                                            <li><a href="#">
+                                                <input id="radio3" type="radio" checked="checked" value="3" name="radio2" class="white" (click)="changemenufontcolor('white')">
+                                                <label for="radio3"><span><span></span></span></label>
+                                                </a></li>
+                                            <li><a href="#">
+                                                <input id="radio4" type="radio" value="4" name="radio2" class="black" (click)="changemenufontcolor('black')">
+                                                <label for="radio4"><span class="black"><span></span></span></label>
+                                                </a></li>
+                                            <li>
+                                                <a class="controlset">
+                                                <input class="jscolor" type="radio" value="#000000" name="radio2" id="colorfont" placeholder="" (change)="changemenufontcolor('colorfont')">
+                                                <label for="radio3"><span id="colorinput1"><span></span></span></label>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0)" class="btn btn-default">Preview</a>
+                            </div>
+                            <div class="upload-logo">
+                                <h4>Setup your logo or name of your site</h4>
+                                <div class="logo-block" *ngIf="logotype=='image'">
+                                    <img src="{{filename}}"  height="80" width="270"/>
+                                    <p>(270px X 100px recommended)</p>
+                                </div>
+                                <div class="form-group logoname-block" *ngIf="logotype=='text'" id="logonamediv">
+                                    <input type="text" #logoname  (blur)="addlogoname(logoname.value)" placeholder="Logo Name"  class="form-control" [(ngModel)]="usersetting.logotext">
+                                </div>
+                                <div class="upload-btn">
+                                    <a href="javascript:void(0)" class="btn btn-default" (click)="uploadlogo()">Upload</a>
+                                    <a href="javascript:void(0)" class="btn btn-default" (click)="openlogonamepopup()">Enter name</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="copyright-notice">
+                              <div class="mobile-number">
+                                <div class="form-group">
+                                    <label>Mobile Number</label>
+                                    <input type="text" #mobilenumber placeholder="+123 456 789 8888" class="form-control" [(ngModel)]="usersetting.mobilenumber"  (blur)="addmobilenumber(mobilenumber.value)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Office Number</label>
+                                    <input type="text" #officenumber placeholder="4567898" class="form-control" [(ngModel)]="usersetting.officenumber"  (blur)="addofficenumber(officenumber.value)">
+                                </div>
+                            </div>
+                            <h4>Set your footer copyright notice</h4>
+                            <div class="form-group">
+                                <input type="text" #footer  placeholder="© 2012-2016 John doe all right reserved." [(ngModel)]="usersetting.footertext" class="form-control">
+                            </div>
+                            <a href="javascript:void(0)" class="btn btn-default"  (click)="addfooter(footer.value)">Save</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="public_page_right">
+                        <div class="public-layout">
+                            <h4>Homepage layout for public display of ViewFoos</h4>
+                            <p>This will be the default layout displayed on your homepage, you can allow visitors to toggle these layout for a more dynamic experience</p>
+                            <div class="layout-option">
+                                <ul>
+                                    <li>
+                                        <div class="tiles-view">
+                                            <i class="tiles"></i>
+                                            <div class="checkbox">
+                                              <label>
+                                                  <input type="checkbox" value="tile" #tilestyle class="CBviewfoostyle" [(ngModel)]="tileview" (change)="changeviewfoostyle(tilestyle.value)">
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                ViewFoo tile
+                                              </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                     <li>
+                                        <div class="tiles-view">
+                                            <i class="gallery"></i>
+                                            <div class="checkbox">
+                                              <label>
+                                                <input type="checkbox" value="gallery" #gallarystyle class="CBviewfoostyle" [(ngModel)]="gallaryview" (change)="changeviewfoostyle(gallarystyle.value)">
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                Gallery
+                                              </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                     <li>
+                                        <div class="tiles-view">
+                                            <i class="masonry"></i>
+                                            <div class="checkbox">
+                                              <label>
+                                                <input type="checkbox" value="masonry" #Masonrystyle class="CBviewfoostyle" [(ngModel)]="masonryview" (change)="changeviewfoostyle(Masonrystyle.value)">
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                Masonry
+                                              </label>
+                                            </div>
+                                        </div>
+                                   </li>
+
+                               </ul>
+                            </div>
+                            <div class="allowing-note">
+                                <p>Allow users to change the view to their desired layout when on your homepage</p>
+                                <div class="sharing-switch">
+                                    <input type="checkbox" #cbviewfoooption class="cmn-toggle cmn-toggle-round" id="cmn-toggle-4" [(ngModel)]="setviewfoooption" (change)="viewfoooption(cbviewfoooption.checked)">
+                                    <label for="cmn-toggle-4"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="privacy">
+                            <h4>ViewFoo privacy & security</h4>
+                            <p>These defaults settings can be overriden when adding a ViewFoo.</p>
+                            <div class="personal-privacy">
+                                <h5>Viewer settings</h5>
+                                <div class="allowing-others">
+                                    <div class="allow-sharing">
+                                        <p>Allow sharing</p>
+                                        <div class="sharing-switch">
+                                            <input type="checkbox" #cbsharing class="cmn-toggle cmn-toggle-round" id="cmn-toggle-5" [(ngModel)]="setsharing" (change)="allowsharing(cbsharing.checked)">
+                                            <label for="cmn-toggle-5"></label>
+                                        </div>
+                                    </div>
+                                    <div class="allow-sharing">
+                                        <p>Allow comments</p>
+                                        <div class="sharing-switch">
+                                            <input type="checkbox" #cbcomment class="cmn-toggle cmn-toggle-round" id="cmn-toggle-6" [(ngModel)]="setcomment" (change)="allowcomment(cbcomment.checked)">
+                                            <label for="cmn-toggle-6"></label>
+                                        </div>
+                                    </div>
+                                    <div class="allow-sharing">
+                                        <p>Allow selections</p>
+                                        <div class="sharing-switch">
+                                            <input type="checkbox" #cbselection class="cmn-toggle cmn-toggle-round" id="cmn-toggle-7" [(ngModel)]="setselection" (change)="allowselection(cbselection.checked)">
+                                            <label for="cmn-toggle-7"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="allowing-others second-block">
+                                    <div class="allow-sharing">
+                                        <p>Disable right mouse button</p>
+                                        <div class="sharing-switch">
+                                            <input type="checkbox" #cbdisablerc class="cmn-toggle cmn-toggle-round" id="cmn-toggle-8" [(ngModel)]="setmousebtnclick"  (change)="disablerightclick(cbdisablerc.checked)">
+                                            <label for="cmn-toggle-8"></label>
+                                        </div>
+                                    </div>
+                                    <div class="allow-sharing">
+                                        <p>Sharing photo file Info</p>
+                                        <div class="sharing-switch">
+                                            <input type="checkbox" #cbsharingpht class="cmn-toggle cmn-toggle-round" id="cmn-toggle-9" [(ngModel)]="setsharingfileinfo"  (change)="sharingphotofileinfo(cbsharingpht.checked)">
+                                            <label for="cmn-toggle-9"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social">
+                            <h4>Social media & links you want on your site</h4>
+                            <div class="col-md-6">
+                                <div class="social-left">
+                                    <ul>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="fb"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #facebook class="form-control" [(ngModel)]="usersetting.facebook" (blur)="socialmedialink(facebook.value,'facebook')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="twitter"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #twitter class="form-control" [(ngModel)]="usersetting.twitter" (blur)="socialmedialink(twitter.value,'twitter')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="google"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #googleplus class="form-control" [(ngModel)]="usersetting.googleplus" (blur)="socialmedialink(googleplus.value,'googleplus')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="insta"></i>
+                                                <div class="form-group">
+                                                <input type="text" placeholder="Enter URL" #instagram class="form-control" [(ngModel)]="usersetting.instagram" (blur)="socialmedialink(instagram.value,'instagram')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                         <li>
+                                            <div class="facebook">
+                                                <i class="pinterest"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #pinterest class="form-control" [(ngModel)]="usersetting.pinterest" (blur)="socialmedialink(pinterest.value,'pinterest')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                         <li>
+                                            <div class="facebook">
+                                                <i class="word"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #wordpress class="form-control" [(ngModel)]="usersetting.wordpress" (blur)="socialmedialink(wordpress.value,'wordpress')">
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="social-left social-right">
+                                    <ul>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="u_tube"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #youtube class="form-control" [(ngModel)]="usersetting.youtube" (blur)="socialmedialink(youtube.value,'youtube')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="viber"></i>
+                                                <div class="form-group">
+                                                <input type="text" placeholder="Enter URL" #viber class="form-control" [(ngModel)]="usersetting.viber" (blur)="socialmedialink(viber.value,'viber')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="linkdin"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #linkdin class="form-control" [(ngModel)]="usersetting.linkdin" (blur)="socialmedialink(linkdin.value,'linkdin')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="facebook">
+                                                <i class="behance"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #behance  class="form-control" [(ngModel)]="usersetting.behance" (blur)="socialmedialink(behance.value,'behance')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                         <li>
+                                            <div class="facebook">
+                                                <i class="tumbler"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #tumbler class="form-control" [(ngModel)]="usersetting.tumbler" (blur)="socialmedialink(tumbler.value,'tumbler')">
+                                                </div>
+                                            </div>
+                                        </li>
+                                         <li>
+                                            <div class="facebook">
+                                                <i class="dribble"></i>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter URL" #dropbox class="form-control" [(ngModel)]="usersetting.dropbox" (blur)="socialmedialink(dropbox.value,'dropbox')">
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ <div class="container" id="crop-logo">
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-lg profilehomepagecropper">
+        <div class="modal-content">
+          <form id="frmBrowse" class="avatar-form"  enctype="multipart/form-data" method="post">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
+            </div>
+            <div class="modal-body">
+              <div class="avatar-body">
+
+                <!-- Upload image and data -->
+                  <div class="avatar-upload">
+                  <input type="hidden" class="avatar-src" name="avatar_src">
+                  <input type="hidden" class="avatar-data" name="avatar_data">
+                  <label for="avatarInput">Local upload</label>
+                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
+                </div>
+
+                <!-- Crop and preview -->
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="avatar-wrapper"></div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="avatar-preview preview-lg"></div>
+                    <div class="avatar-preview preview-md"></div>
+                    <div class="avatar-preview preview-sm"></div>
+                  </div>
+                </div>
+
+                <div class="row avatar-btns">
+                  <div class="col-md-9">
+
+                  </div>
+                  <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary btn-block avatar-save" (click)="onCropperPopupDone()">Done <i *ngIf="iscropperloading" class='fa fa-spinner fa-spin'></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div class="modal-footer">
+                 <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+ </div>
+

@@ -1,0 +1,23 @@
+<!-- For Sidebar Settings -->
+<!-- <div *ngIf="userhomesettings" class="publicview"> -->
+
+
+
+<sidebarnav *ngIf="userhomesettings.navposition=='left'" [folderlist]="folderlist" [menuBackgroundcolor]="userhomesettings.menucolor" [fontcolor]="userhomesettings.fontcolor" (folderchange)="onFolderClick($event)" [userhomesettings]="userhomesettings"></sidebarnav>
+
+
+<!-- For Topbar Settings -->
+<topbarnav *ngIf="userhomesettings.navposition=='top'" [folderlist]="folderlist" [menuBackgroundcolor]="userhomesettings.menucolor" [fontcolor]="userhomesettings.fontcolor" (folderchange)="onFolderClick($event)" [userhomesettings]="userhomesettings"></topbarnav>
+
+<router-outlet></router-outlet>
+
+<footer [class.sideblock-wrapper]="userhomesettings.navposition=='left'">
+  <div class="tile-section">
+    <div class="copyright-note">
+      <p>{{userhomesettings.footertext}}</p>
+    </div>
+    <div class="footer-logo">
+      <a href="javascript:void(0)"><img src="../img/public_views/footer_logo.png" alt="ViewFoo logo"></a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,219 @@
+<topnav> </topnav>
+ <section class="content-wrapper">
+        <div class="header-bottombelt">
+           <div class="container-fluid">
+                <div class="row">
+                    <div class="billing_title">
+                        <i class="billing-icon"></i>
+                        <h1>Billing</h1>
+                    </div>
+               </div>
+           </div>
+       </div>
+        <div class="container select-template">
+            <div class="row">
+                <div class="billing-content">
+                    <div class="billing-first-row" *ngIf="istrial">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="monthly-payment trial">
+                                <h3>Monthly payment</h3>
+                                <p>Trial</p>
+                                <p class="condition"><i class="fa fa-usd" aria-hidden="true"></i>12/month after trial</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="monthly-payment expiry-date">
+                                <h3>Free days left</h3>
+                                <p>{{day}}</p>
+                                <p class="end-date">Ends on {{subenddate | date:'mediumDate'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="billing-first-row" *ngIf!="istrial">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="monthly-payment" *ngIf="paymenttype=='monthly'">
+                                <h3>Monthly payment</h3>
+                                <p>$12</p>
+                            </div>
+                              <div class="monthly-payment" *ngIf="paymenttype=='yearly'">
+                                <h3>Anually payment</h3>
+                                <p>$120</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="anually-payment" *ngIf="paymenttype=='monthly'">
+                                <h3>Start paying annually and get two months <br> a year for free</h3>
+                                <a href="javascript:void(0);" class="btn btn-default" (click)="billingdetail()">Start paying annually</a>
+                            </div>
+                            <div class="monthly-payment expiry-date" *ngIf="paymenttype=='yearly'">
+                                <h3>Free days left</h3>
+                                <p>{{day}}</p>
+                                <p class="end-date">Ends on {{subenddate | date:'mediumDate'}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="billing-second-row" *ngIf="istrial">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="anually-payment add-details">
+                                <h3>Add your billing details</h3>
+                                <p>You haven’t billing information yet, but you’ll still be able to use your free days of trial even aftrer you provide them. Once your trial ends you will be changed the amount  matching the plan and number of seats you add by then.</p>
+                                <a href="javascript:void(0);" (click)="billingdetail()" class="btn btn-default">Add billing details</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="no-invoices">
+                                <h3> Invoices</h3>
+                                <i class="invoce-icon"></i>
+                                <p>No invoice yet!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="billing-second-row" *ngIf!="istrial && paymentdetail"  >
+                        <div class="col-sm-6 col-md-6">
+                            <div class="billing-details">
+                                <h3> Billing details</h3>
+                                <div class="company-name">
+                                    <p class="title">Company name:</p>
+                                    <p class="text">{{paymentdetail.companyname}}</p>
+                                </div>
+                                <div class="company-name">
+                                    <p class="title">Payment method:</p>
+                                    <p class="text">{{paymentdetail.cardtype}} {{paymentdetail.cardnumber}}</p>
+                                </div>
+                                <div class="company-name">
+                                    <p class="title">Next billing date:</p>
+                                    <p class="text">{{paymentdetail.nextbilldate}}</p>
+                                </div>
+                                <div class="company-name">
+                                    <p class="title">Billing country:</p>
+                                    <p class="text">{{paymentdetail.billingcountry}}</p>
+                                </div>
+                                <a href="#" class="btn btn-default">Update</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="billing-details last-invoice">
+                                <h3> Last invoices</h3>
+                                <div class="invoice-content">
+                                    <ul>
+                                        <li *ngFor="let inv of invoicedetail">
+                                            <div class="invoice-detials">
+                                                <i class="pdf-icon"></i>
+                                                <div class="invoice-id">
+                                                    <h5>#{{inv.invoiceid}}</h5>
+                                                    <p>Billing date:{{inv.billingdate}}</p>
+                                                </div>    
+                                                <p class="price" *ngIf="paymenttype=='monthly'">#12</p>
+                                                 <p class="price" *ngIf="paymenttype=='yearly'">#120</p>
+                                            </div>
+                                        </li>
+                            
+                                    </ul>
+                                </div>
+                                <a href="#" class="all-invoice">See all invoices</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="billing-third-row" *ngIf="istrial">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="cancel-subsription promo-code">
+                                <h3>Promo code</h3>
+                                <p>Got a promo code and looking for a place to enter it? Here:</p>
+                                <div class="form-group">
+                                    <input type="text" #code  placeholder="Enter promo code" class="form-control"  (keyup.enter)="sendpromocode(code.value)">
+                                    <p class="errorMessage">{{promomessage}}</p>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="reduce-payment">
+                                <h3>Reduce your payment?</h3>
+                                <p>You can cut down on your VieFoo Pro subscription 
+                                    payments by recommending ViewFoo Pro to your friends. You earn their first month’s payment as credit on your account.</p>
+                                <a href="javascript:void(0);" (click)="tellfriend()" class="btn btn-default">Invite a friend</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="billing-third-row" *ngIf!="istrial">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="cancel-subsription">
+                                <h3>Need to cancel your subscription?</h3>
+                                <p>We’re sad to see you go.</p>
+                               <a class="btn btn-default" href="javascript:void(0);"  (click)="cancelsubscription()">Cancel subscription<i *ngIf="loading" class='fa fa-spinner fa-spin'></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="reduce-payment">
+                                <h3>Reduce your payment?</h3>
+                                <p>You can cut down on your VieFoo Pro subscription 
+                                    payments by recommending ViewFoo Pro to your friends. You earn their first month’s payment as credit on your account.</p>
+                                 <a href="javascript:void(0);" (click)="tellfriend()" class="btn btn-default">Invite a friend</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  
+                </div>
+                <div class="modal-body">
+                    <div class="signin_form forgot_pwd">
+                  
+                        <h4>Tell a Friend</h4>
+                        <p>Enter your friend's Email address here.</p>
+                 
+                      <form [formGroup]="fpassform"  (ngSubmit)="sendmail()">
+                        <div class="form-group">
+                            <input type="text" placeholder="Email" class="form-control"
+                                   formControlName="email" />
+                            <div *ngIf="email.touched" 
+                                class="text text-danger pull-right small">
+                                <span *ngIf="email.hasError('required')">Email is required</span>
+                                <span *ngIf="email.hasError('invalidEmail')">Email is invalid</span>
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]='!fpassform.valid' class="send_btn">
+                            Send
+                            <i *ngIf="loading" class='fa fa-spinner fa-spin pull-right'></i>
+                        </button>
+                    </form>
+                     <p class="errorMessage">{{message}}</p>
+                </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+
+                <p>Your subscription plan is already active right now</p>
+                <p>To extend subscription plan first cancel current subscription</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+           
+          

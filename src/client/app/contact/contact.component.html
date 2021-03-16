@@ -1,0 +1,486 @@
+
+<topnav> </topnav> 
+<section class="content-wrapper">
+        <div class="header-bottombelt">
+           <div class="container-fluid">
+                <div class="row">
+                    <div class="bread-crumbsbelt breadcrumb-default">
+                        <div class="build-btnbox">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle add-image" type="button" aria-expanded="false">
+                                <i class="icon-imgadd"></i>
+                                <span>Add Image Container &nbsp; <span class="caret"></span> </span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu img-container">
+                               <li class="thumb"><a href="#"><i class=""></i>Image Container</a></li>
+                               <li class="gallery"><a href="#"><i class=""></i>Gallery Container</a></li>
+                                <li class="carousel"><a href="#"><i class=""></i>Carousel Container</a></li>
+                                <li class="massonary"><a href="#"><i class=""></i>Massonary Container</a></li>
+                            </ul>
+                            <div class="save">
+                                <a href="" class="btn btn-default"><i class=""></i>Save</a>
+                            </div>
+                            <div class="delete">
+                                <a href="" class="btn btn-default"><i class=""></i>Delete</a>
+                            </div>
+                        </div>
+                        <div class="choose-temp"> 
+                            <span></span>
+                            <div class="brc-default">
+                                <ul>
+                                    <li>
+                                        <div class="brc-title">
+                                            <span>1</span>
+                                            <h6>Choose Template</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="brc-title">
+                                            <span class="active">2</span>
+                                            <h6>Build ViewFoo</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="brc-title">
+                                            <span>3</span>
+                                            <h6>Publish</h6>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<div class="breadcrumb flat">
+                                <a href="#" class="active">Choose Template</a>
+                                <a href="#" class="disable">Build ViewFoo</a>
+                                <a href="#" class="publish">Publish</a>
+                            </div>-->
+                        </div>
+                    </div>
+               </div>
+           </div>
+       </div>
+        <div class="container select-template">
+            <div class="row">
+                <div class="setting-sidebar">
+                    <div class="sidebar-block">
+                      <div id="sidebar">
+                          <ul class="setting-title">
+                              <li><label>Viewer settings</label><a href="#" class="acitve"><i class="save"></i></a></li>
+                          </ul>
+                          <ul class="allow-sharing">
+                              <li>Allow sharing
+                               <div class="sharing-switch">
+                                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                    <label for="cmn-toggle-1"></label>
+                                </div>
+                              </li>
+                              <li>Allow comments
+                               <div class="sharing-switch">
+                                    <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                    <label for="cmn-toggle-2"></label>
+                                </div>
+                              </li>
+                              <li>Allow selections
+                               <div class="sharing-switch">
+                                    <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                    <label for="cmn-toggle-3"></label>
+                                </div>
+                              </li>
+                          </ul>
+                          <ul class="image-size">
+                              <li><span>Image size</span>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" value="">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    Normal 
+                                  </label>
+                                    <label>
+                                    <input type="checkbox" value="">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    Hi-Res 
+                                  </label>
+                                </div>
+                              </li>
+                          </ul>
+                          <ul class="allow-sharing">
+                              <li>Show image data mousehover
+                               <div class="sharing-switch">
+                                    <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                    <label for="cmn-toggle-4"></label>
+                                </div>
+                              </li>
+                              <li>Image info frame
+                                <div class="sharing-switch">
+                                    <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                    <label for="cmn-toggle-5"></label>
+                                </div>
+                              </li>
+                              <li style="border-bottom:1px solid #dbdbdb;">Image default numbering
+                                <div class="sharing-switch">
+                                    <input class="info-frame" placeholder="001">
+                                </div>
+                              </li>
+                          </ul>
+                           <ul class="viewfoo-bg">
+                               <li><span>Color options</span>
+                                   <div class="select-bg">
+                                       <p>Background color</p>
+                                        <div class="pick-color">
+                                            <ul>
+                                                <li><a class="white" href="#"></a></li>
+                                                <li><a class="black" href="#"></a></li>
+                                                <li><a class="controlset">
+                                                    <input class="jscolor" type="text" value="#000000" name="color10" id="color7" placeholder=""></a>
+                                                </li>
+                                            </ul>
+                                        </div>     
+                                   </div>
+                                   <div class="select-bg">
+                                       <p>Menu font color</p>
+                                        <div class="pick-color">
+                                            <ul>
+                                                <li><a class="white" href="#"></a></li>
+                                                <li><a class="black" href="#"></a></li>
+                                                <li><a class="controlset">
+                                                    <input class="jscolor" type="text" value="#000000" name="color10" id="color7" placeholder=""></a>
+                                                </li>
+                                            </ul>
+                                        </div>     
+                                   </div>
+                                   <div class="select-bg">
+                                       <p>Menu background color</p>
+                                        <div class="pick-color">
+                                            <ul>
+                                                <li><a class="white" href="#"></a></li>
+                                                <li><a class="black" href="#"></a></li>
+                                                <li><a class="controlset">
+                                                    <input class="jscolor" type="text" value="#000000" name="color10" id="color7" placeholder=""></a>
+                                                </li>
+                                            </ul>
+                                        </div>     
+                                   </div>
+                              </li>
+                          </ul>
+                          <div class="watermark-btn">
+                            <a href="#" class="btn btn-default">Add image watermark</a>
+                            <p>Optional</p>
+                          </div>
+                          
+                      </div>
+                      <div class="main-content">
+                          <a href="#" data-toggle=".sidebar-block" id="sidebar-toggle"><i class=""></i></a>
+                      </div>
+                    </div>
+                </div>
+                <div class="upload-section viewfoo-carousel-view">
+                    <div class="second-view">
+                        <div class="col-md-12">
+                            <div class="full-width">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="gellery-title">
+                                            <div class="form-group">
+                                                <input type="text" placeholder="Carousel container title" class="form-control">
+                                            </div>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="upload-image">    
+                                    <h3>Upload images here</h3>
+                                    <div class="up-button">
+                                        <a href="javascript:void(0)" class="btn btn-default" id="upload-image" style="display:none;"><i class="fa fa-cloud-upload" aria-hidden="true"></i>Upload more</a>
+                                        <a href="#"><img src="img/build_viewfoo/close_icon.png"></a>
+                                    </div>
+                                    <div class="testimage"></div>
+                                    <div class="img-block second-img">
+                                        <ul>
+                                            <li>
+                                                <div class="first-pic">
+                                                    <img src="img/select_template/third_view_icon.png" alt="">
+                                                    <div class="slide-nav">
+                                                        <a class="left-arrow" href="#"></a> 
+                                                        <a class="right-arrow" href="#"></a> 
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropzone drag-image" id="myDropzone">
+                                        <div class="upload-img-content">
+                                            <i class="upload-files"></i>
+                                            <div class="dz-default dz-message">
+                                                <span>Drop files here to upload 
+                                                    <br>
+                                                        Or 
+                                                    <br>
+                                                    click to upload files</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resize-icon"></div>
+                                </div>
+                                
+                                <div class="gallery-btn-box">
+                                    <button type="button" class="btn btn-primary pre-btn openPreviewImage" data-toggle="modal" data-target="#myModal">
+                                        Preview
+                                    </button>
+                                    <div class="caousel-popup">
+                                       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                           <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="popup-content">
+                                                    <div id="owl-demo" class="owl-carousel owl-theme">
+                                                        <div class="item"><img src="img/build_viewfoo/slide1.jpg" alt=""></div>
+                                                    </div>
+                                                    <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                                    </button>
+                                               </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                            <button type="button" class="btn btn-primary publish-btn" data-toggle="modal" data-target="#myPublishModal">
+                               Ready to publish
+                            </button>
+                            <div class="publish-popup">
+                              <div class="modal fade" id="myPublishModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="publish-block">
+                                  <div class="publish-ur-viewfoo">
+                                      <h3>Publish your ViewFoo</h3>
+                                      <div class="for-public">
+                                          <a href="" class="btn btn-default"><i class="public"></i>Public</a>
+                                          <p>Available on your site to <br> anyone online</p>
+                                      </div>
+                                      <div class="for-private">
+                                          <div class="accordion">
+                                            <a href="#" class="btn btn-default private-btn"><i class="private"></i>Private</a>
+                                            <p>You control who sees <br>your ViewFoo</p>
+                                            <div class="article ac-large toggle-private">
+                                              <div class="cover-img-block">
+                                                  <p>Use this cover image or upload another one:</p>
+                                                  <img src="img/build_viewfoo/kim_sharma.jpg">
+                                                  <a href="#" class="btn btn-default"><i class="fa fa-upload"></i>Upload</a>
+                                              </div>
+                                              <div class="publish-form">
+                                                <input type="text" placeholder="Enter title for this ViewFoo">
+                                                <label>Type and enter to add tag</label>
+                                                <input type="text" placeholder="Enter title for this ViewFoo">
+                                                <label>Type and enter to add tag</label>
+                                                <div class="custom_dd">
+                                                    <div class="btn-group folderblock">
+                                                        <button type="button" class=" select_btn btn btn-default" aria-haspopup="true" aria-expanded="true">
+                                                            Selecr folder
+                                                        </button>  
+                                                        <div id="accordion" class="accordion dropdown-menu">
+                                                            <div class="addfoldertitle">
+                                                             <label>Type and enter to add tag</label> 
+                                                             <a href="#" class="closeicon"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+                                                            </div>
+                                                        <ul id="addfolder">
+                                                            
+                                                           
+                                                            <li>
+                                                                <div class="link addfolder"><i class="plusicon"></i><span>Add New Folder</span></div>
+                                                                <ul class="submenu">
+                                                                    <input id="addnewfolder" type="text" placeholder="Enter folder name" >
+                                                                    <button class="add_btn mainfolderadd">Add</button>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <div class="link"><span  onclick="displayTag('Folder 1')">Folder 1</span><i class="fa  fa-angle-down"></i></div>
+                                                                <ul class="submenu"> 
+                                                                    <li>
+                                                                        <div class="link addfolder sub_add"><i class="plusicon"></i><span>Add New sub folder</span></div> 
+                                                                        <ul class="submenu">
+                                                                            <input type="text" placeholder="Enter sub folder name" id="addnewsubfolder">
+                                                                            <button class="add_btn subfolderadd">Add</button>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li><a onclick="displaysubtag('Folder 1/Sub Folder 1')">Sub Folder 1</a></li>
+                                                                    <li><a onclick="displaysubtag('Folder 1/Sub Folder 2')">Sub Folder 2</a></li>
+                                                                    <li><a onclick="displaysubtag('Folder 1/Sub Folder 3')">Sub Folder 3</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <div class="link folderbrd"><span onclick="displayTag('Folder 2')">Folder 2</span><i class="fa  fa-angle-down"></i></div>
+                                                                <ul class="submenu"> 
+                                                                    <li>
+                                                                        <div class="link addfolder sub_add folderbrd"><i class="plusicon"></i><span>Add New sub folder</span></div>
+                                                                        <ul class="submenu">
+                                                                            <input type="text" placeholder="Enter sub folder name" id="addnewsubfolder">
+                                                                            <button class="add_btn subfolderadd">Add</button>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li><a onclick="displaysubtag('Folder 2/Sub Folder 1')">Sub Folder 1</a></li>
+                                                                    <li><a onclick="displaysubtag('Folder 2/Sub Folder 2')">Sub Folder 2</a></li>
+                                                                    <li><a onclick="displaysubtag('Folder 2/Sub Folder 3')">Sub Folder 3</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                        </div>
+                                                </div>
+                                                  <a href="#" class="btn btn-defautl">
+                                                      <i class=""></i>Publish ViewFoo
+                                                  </a>
+                                                </div>
+                                               </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                    <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </button>
+                               </div>
+                                </div>
+                            </div>
+                        </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- ColorPicker Js -->
+    <script src="js/jscolor.js"></script>
+    
+    <!-- Upload Image Js -->
+    <script src="js/dropzone.js"></script>
+    <script src="js/common.js"></script>
+    
+    <!-- Slider JS -->
+    <script src="js/owl.carousel.min.js"></script>
+    
+    <!-- Navigation Js -->
+    
+    <script>
+        $(document).ready(function(){
+            $('.nav_bar').click(function(){
+                $('.navigation').toggleClass('visible');
+                $('body').toggleClass('opacity');
+            });
+            
+            Dropzone.autoDiscover = false;
+            // File Upload plugin
+            var previewNode = document.querySelector(".displayImage");
+            previewNode.id = "";
+            var previewTemplate = previewNode.parentNode.innerHTML;
+            previewNode.parentNode.removeChild(previewNode);
+            myDropzone= {
+                url: 'js',
+                autoProcessQueue: true,
+                uploadMultiple: true,
+                acceptedFiles: "image/*",
+                clickable : '#upload-image,#myDropzone,.upload-files',
+                previewTemplate: previewTemplate,
+                thumbnailWidth: 200,
+                thumbnailHeight: 200,
+                previewsContainer: ".displayImageBlock", 
+                init: function() {
+                    this.on("complete", function (file) {
+                        if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                        //call function for create a pagination
+                            createPagination();
+                        }
+                    }); 
+                    this.on("sending",function(file){
+                       $('.blankli').remove(); 
+                    });
+                    this.on("removedfile",function(file){
+                         crateBlankImg($('.displayImage').length);
+                    })
+                }
+                
+               
+            }
+            var documentDropzone = new Dropzone("#myDropzone", myDropzone);
+            crateBlankImg($('.displayImage').length);
+            function createPagination(){
+                $(".paginationAdd").html('');
+                var activePage = 1;
+                var numDiv = $('.displayImage').length;
+                crateBlankImg(numDiv);
+                if(numDiv > 28){
+                    $('.displayImage').hide();
+                    $('.displayImage:lt(28)').show();
+                        var page = "";
+                        for(i=0;i<numDiv/28;i++){
+                            if(i == 0){
+                                page += '<div class="one active" id="'+(i+1)+'">'+(i+1)+'</div>'
+                            }else{
+                                page += '<div class="one" id="'+(i+1)+'">'+(i+1)+'</div>'
+                            }
+                        }
+                        $(".pagination").html(page);
+                }
+                $('.one').click(function(){
+                    var clickValue = $(this).attr('id')
+                    if(activePage != clickValue){
+                        $('.one').removeClass('active');
+                        $(this).addClass('active');
+                        activePage = clickValue;
+                        if(clickValue == 1){
+                            var hideFirst = 0;
+                        }else{
+                            var hideFirst = ((clickValue-1)*28 - 1);
+                        }
+                        $('.displayImage').hide();
+                        $('.displayImage:gt('+hideFirst+'):lt(28)').show();
+                    }
+                });
+            }
+            function crateBlankImg(number){
+                
+                if(number > 28){
+                    var value = Math.ceil(number/28);
+                    for(i=1;i<=(value*28-number);i++){
+                        $('.displayImageBlock').append('<li class="blankli displayImage" style="display:none;"><div class="first-pic"><img src="img/build_viewfoo/pic1.png" alt=""></div></li>');
+                    }
+                }else{
+                    for(i=1;i<=(28-number);i++){
+                        $('.displayImageBlock').append('<li class="blankli displayImage"><div class="first-pic"><img src="img/build_viewfoo/pic1.png" alt=""></div></li>');
+                    }
+                }
+                if(number > 0){
+                    $("#myDropzone").css("opacity", "0");
+                    $("#upload-image").show();
+                }
+            }
+            $(".openPreviewImage").click(function(){
+                var number = $('.displayImage:not(.blankli)').length;
+                if(number > 0){
+                    $("#owl-demo").data('owlCarousel').removeItem();
+                }
+                for (var i=0 ;i<number;i++){
+                    var owl = $("#owl-demo");
+                    
+                    owl.owlCarousel();
+                    var test  = $( ".displayImage:eq('"+i+"') > .dz-image img" ).attr('src');   
+                    var test1 = '<img alt="" src="'+test+'">';
+                    var content = "<div class=\"item \"><h1>"+test1+"</h1></div>";
+                    owl.data('owlCarousel').addItem(content);
+                }
+            })
+            
+            
+        });
+    </script>
+  
+    <!-- PopUp Toggle Js -->
+    <script type="text/javascript">
+        $(".private-btn").click(function(){
+            $(".toggle-private").toggle();
+        });
+        
+    </script>
+    
+    

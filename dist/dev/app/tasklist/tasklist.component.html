@@ -1,0 +1,29 @@
+<div class="col-lg-6">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Project tasks</h5>            
+        </div>
+        <div class="ibox-content">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--(click)="getProjectDetails(project.pkproid)"-->
+                    <tr *ngFor="let task of tasks;" (click)="showTaskDetail(task)">
+                        <td>{{task.pktaskid}}</td>
+                        <td>
+                          <textarea name="tasklist{{task.pktaskid}}" value="{{task.tasktitle}}"  cols="6" rows="1" id="rabbiAbout" class="form-control valid" aria-required="true" aria-invalid="false"></textarea>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+            <div>Add New Task</div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

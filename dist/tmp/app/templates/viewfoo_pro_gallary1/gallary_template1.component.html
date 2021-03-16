@@ -1,0 +1,410 @@
+<section class="content-wrapper">
+    <div class="header-bottombelt">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="bread-crumbsbelt breadcrumb-default">
+                    <div class="build-btnbox">
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle add-image" type="button" aria-expanded="false">
+                            <i class="icon-imgadd"></i>
+                            <span>Add image container &nbsp; <span class="caret"></span> </span>
+                        </button>                        
+                        <ul role="menu" class="dropdown-menu img-container">
+                            <li class="thumb">
+                                <a href="javascript:void(0)" (click)="containerCreate('gallery')">
+                                    <i class=""></i>Image container
+                                </a>
+                            </li>
+                            <li class="gallery">
+                                <a href="javascript:void(0)" (click)="containerCreate('gallery')">
+                                    <i class=""></i>Gallery container
+                                </a>
+                            </li>
+                            <li class="carousel">
+                                <a href="javascript:void(0)" (click)="containerCreate('gallery')">
+                                    <i class=""></i>Carousel container
+                                </a>
+                            </li>
+                            <li class="massonary">
+                                <a href="javascript:void(0)" (click)="containerCreate('gallery')">
+                                    <i class=""></i>Massonary container
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="save">
+                            <a href="javascript:void(0)" class="btn btn-default"><i class=""></i>Save</a>
+                        </div>
+                        <div class="delete">
+                            <a href="javascript:void(0);" class="btn btn-default"
+                               (click)="deleteviewfoo()"><i class=""></i>Delete</a>
+                        </div>
+                    </div>
+
+                    <div class="choose-temp"> 
+
+                        <span></span>
+                        <div class="brc-default">
+                            <ul>
+                                <li>
+                                    <div class="brc-title">
+                                        <a href="javascript:void(0);" (click)="selecttemplate()" > <span>1</span></a>
+                                        <h6>Choose template</h6>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="brc-title">
+                                        <span class="active">2</span>
+                                        <h6>Build ViewFoo</h6>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="brc-title">
+                                        <span>3</span>
+                                        <h6>Publish</h6>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="invalid" class="text text-danger">{{msg}}</div>
+    <div class="container select-template">
+        <div class="row">
+            <div class="sidebar-block">        
+                <div id="sidebar">
+                    <ul class="setting-title">
+                        <li><label>Viewer settings</label><a href="javascript:void(0)" class="acitve"><i class="save"></i></a></li>
+                    </ul>
+                    <ul class="allow-sharing">
+                        <li>Allow sharing
+                            <div class="sharing-switch">
+                                <input id="cmn-toggle-1" #cbsharing class="cmn-toggle cmn-toggle-round" type="checkbox" (change)="allowsharing(cbsharing.checked)" />
+                                <label for="cmn-toggle-1"></label>
+                            </div>
+                        </li>
+                        <li>Allow comments
+                            <div class="sharing-switch">
+                                <input id="cmn-toggle-2" #cbcomment class="cmn-toggle cmn-toggle-round" type="checkbox" (change)="allowcomment(cbcomment.checked)" />
+                                <label for="cmn-toggle-2"></label>
+                            </div>
+                        </li>
+                        <li>Allow selections
+                            <div class="sharing-switch">
+                                <input id="cmn-toggle-3" #cbselection class="cmn-toggle cmn-toggle-round" type="checkbox" (change)="allowselection(cbselection.checked)" />
+                                <label for="cmn-toggle-3"></label>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="image-size">
+                        <li><span>Image size</span>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="CBimagesize" #sizenormal value="Normal" (change)="changeimagesize(sizenormal.value)">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    Normal 
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="CBimagesize" #sizeHR value="Hi-Res" (change)="changeimagesize(sizeHR.value)">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    Hi-Res 
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="allow-sharing">
+                        <li>Show image data mousehover
+                            <div class="sharing-switch">
+                                <input id="cmn-toggle-4" #cbmousehoverval class="cmn-toggle cmn-toggle-round" type="checkbox"  (change)="changemousehover(cbmousehoverval.checked)">
+                                <label for="cmn-toggle-4"></label>
+                            </div>
+                        </li>
+                        <li>Image info frame
+                            <div class="sharing-switch">
+                                <input id="cmn-toggle-5" #cbframeval class="cmn-toggle cmn-toggle-round" type="checkbox"  (change)="changeframe(cbframeval.checked)">
+                                <label for="cmn-toggle-5"></label>
+                            </div>
+                        </li>
+                        <li style="border-bottom:1px solid #dbdbdb;">Image default numbering
+                            <div class="sharing-switch">
+                                <input type="text" #imgnum class="info-frame"  placeholder="001" (blur)="imagedefaultno(imgnum.value)">
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="viewfoo-bg">
+                        <li><span>Color options</span>
+                            <div class="select-bg">
+                                <p>Background color</p>
+                                <div class="pick-color">
+                                    <ul>
+                                        <li><a class="white" href="javascript:void(0)" (click)="changebgcolor('white')"></a></li>
+                                        <li><a class="black" href="javascript:void(0)" (click)="changebgcolor('black')"></a></li>
+                                        <li>
+                                            <a class="controlset">
+                                                <input class="jscolor" type="text" value="#000000" name="color10" id="color7" placeholder="" ></a>
+                                        </li>
+                                    </ul>
+                                </div>     
+                            </div>
+                            <div class="select-bg">
+                                <p>Menu font color</p>
+                                <div class="pick-color">
+                                    <ul>
+                                        <li><a class="white" href="javascript:void(0)" (click)="changefontcolor('white')"></a></li>
+                                        <li><a class="black" href="javascript:void(0)" (click)="changefontcolor('black')"></a></li>
+                                        <li>
+                                            <a class="controlset">
+                                                <input class="jscolor" type="text" value="#000000" name="color10" id="color7" placeholder=""></a>
+                                        </li>
+                                    </ul>
+                                </div>     
+                            </div>
+                            <div class="select-bg">
+                                <p>Menu background color</p>
+                                <div class="pick-color">
+                                    <ul>
+                                        <li><a class="white" href="javascript:void(0)" (click)="changemenubgcolor('white')"></a></li>
+                                        <li><a class="black" href="javascript:void(0)" (click)="changemenubgcolor('black')"></a></li>
+                                        <li><a class="controlset">
+                                                <input class="jscolor jscolor-active" type="text" value="#000000" name="color10" id="color7" placeholder=""></a>
+                                        </li>
+                                    </ul>
+                                </div>     
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="watermark-btn">
+                        <a href="javascript:void(0)" class="btn btn-default">Add image watermark</a>
+                        <p>Optional</p>
+                    </div>
+
+                </div>
+                <div class="main-content">
+                    <a href="javascript:void(0)" data-toggle=".sidebar-block" id="sidebar-toggle"><i class=""></i></a>
+                </div>
+            </div>
+
+            <div class="upload-section gellary-template" *ngFor="let container of currentViewfoo.containers; let i=index">
+                 <div class="col-md-12">
+                    <div class="gellery-title">
+                        <div class="form-group">
+
+                            <input type="text" placeholder="ViewFoo gallery container title" #title 
+                                   [(ngModel)]="container.containertitle" class="form-control" (blur)="updatecontainer(container.containertitle, container.id)">
+                        </div>
+                        <a href="#"></a>
+                    </div>
+                    <gallarysingle [container]="container"></gallarysingle>
+
+
+                </div>
+            </div>
+            <div class="gallery-btn-box">
+                <button type="button" class="btn btn-primary pre-btn openPreviewImage" data-toggle="modal" data-target="#myModal">
+                    Preview
+                </button>
+                <div class="caousel-popup">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="popup-content">
+                                    <div id="owl-demo" class="owl-carousel owl-theme">
+                                        <div class="item"><img src="img/build_viewfoo/slide1.jpg" alt=""></div>
+                                    </div>
+                                    <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary publish-btn" data-toggle="modal" data-target="#myPublishModal">
+                    Ready to publish
+                </button>
+                <div class="publish-popup">
+                    <div class="modal fade" id="myPublishModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="publish-block">
+                            <div class="publish-ur-viewfoo">
+                                <h3>Publish your ViewFoo</h3>
+                                <div class="for-public">
+                                    <a href="javascript:void(0)" class="btn btn-default"><i class="public"></i>Public</a>
+                                    <p>Available on your site to <br> anyone online</p>
+                                </div>
+                                <div class="for-private">
+                                    <div class="accordion">
+                                        <a href="javascript:void(0)" class="btn btn-default private-btn"><i class="private"></i>Private</a>
+                                        <p>You control who sees <br>your ViewFoo</p>
+                                        <div class="article ac-large toggle-private">
+                                            <div class="cover-img-block">
+                                                <p>Use this cover image or upload another one:</p>
+                                                <img src="{{filename}}">
+                                                <a href="javascript:void(0)" class="btn btn-default" (click)="uploadcover()"><i class="fa fa-upload"></i>Upload</a>
+                                            </div>
+                                            <div class="publish-form">
+                                                <input type="text" #title placeholder="Enter title for this ViewFoo" (blur)="vftitle=title.value">
+                                                <label>Type and enter to add tag</label>
+                                                <input type="text" #tag placeholder="Enter title for this ViewFoo" (blur)="vftags=tag.value">
+                                                <label>Type and enter to add tag</label>
+                                                <div class="custom_dd">
+                                                    <div class="btn-group folderblock">
+                                                        <button type="button" class=" select_btn btn btn-default" aria-haspopup="true" aria-expanded="true">
+                                                            Select folder
+                                                        </button>  
+                                                        <div id="accordion" class="accordion dropdown-menu">
+                                                            <div class="addfoldertitle">
+                                                                <label>Type and enter to add tag</label> 
+                                                                <a href="javascript:void(0)" class="closeicon"><i aria-hidden="true" class="fa fa-times-circle"></i></a>
+                                                            </div>
+                                                            <ul id="addfolder">
+                                                                <li>
+                                                                    <div class="link addfolder"><i class="plusicon"></i><span>Add New Folder</span></div>
+                                                                    <ul class="submenu">
+                                                                        <input id="addnewfolder" type="text" placeholder="Enter folder name" >
+                                                                        <button class="add_btn mainfolderadd" (click)="addnewfolder()">Add</button>
+                                                                    </ul>
+                                                                </li>
+                                                                <li *ngFor="let fl of folderlist">
+                                                                    <div class="link"><span (click)="displayTag(fl.foldername)">{{fl.foldername| substr}}</span><i class="fa fa-angle-down" ></i></div>
+                                                                    <ul class="submenu"> 
+                                                                        <li>
+                                                                            <div class="link addfolder sub_add"><i class="plusicon"></i><span>Add New sub folder</span></div> 
+                                                                            <ul class="submenu">
+                                                                                <input type="text" placeholder="Enter sub folder name" id="addnewsubfolder">
+                                                                                <button class="add_btn subfolderadd">Add</button>
+                                                                            </ul>
+                                                                        </li>
+                                                                        <li><a onclick="displaysubtag('Folder 1/Sub Folder 1')">Sub Folder 1</a></li>
+                                                                        <li><a onclick="displaysubtag('Folder 1/Sub Folder 2')">Sub Folder 2</a></li>
+                                                                        <li><a onclick="displaysubtag('Folder 1/Sub Folder 3')">Sub Folder 3</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                                <!--  <li>
+                                                                      <div class="link folderbrd"><span onclick="displayTag('Folder 2')">Folder 2</span><i class="fa  fa-angle-down"></i></div>
+                                                                      <ul class="submenu"> 
+                                                                          <li>
+                                                                              <div class="link addfolder sub_add folderbrd"><i class="plusicon"></i><span>Add New sub folder</span></div>
+                                                                              <ul class="submenu">
+                                                                                  <input type="text" placeholder="Enter sub folder name" id="addnewsubfolder">
+                                                                                  <button class="add_btn subfolderadd">Add</button>
+                                                                              </ul>
+                                                                          </li>
+                                                                          <li><a onclick="displaysubtag('Folder 2/Sub Folder 1')">Sub Folder 1</a></li>
+                                                                          <li><a onclick="displaysubtag('Folder 2/Sub Folder 2')">Sub Folder 2</a></li>
+                                                                          <li><a onclick="displaysubtag('Folder 2/Sub Folder 3')">Sub Folder 3</a></li>
+                                                                      </ul>
+                                                                  </li>-->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0)" class="btn btn-defautl" (click)="publishviewfoo()">
+                                                    <i class=""></i>Publish ViewFoo
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cloneDisplayImage" style="display: none;">
+        <li class="displayImage">
+            <div class="dz-image">
+                <img data-dz-thumbnail/>
+            </div> 
+            <!--<div class="dz-details">
+                <div class="dz-filename" data-dz-name></div>
+            </div>-->
+            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+            <!--<div class="dz-progress" style="width:0%;" data-dz-uploadprogress></div>-->
+            <div class="dz-error-message"  data-dz-errormessage></div>
+            <div class="dz-success-mark"></div>  
+            <div class="dz-error-mark"></div>
+            <div class="preview-details">
+                <i class="glyphicon glyphicon-trash" data-dz-remove  ></i>
+                <div class="dz-size" data-dz-size></div>
+            </div>
+        </li>
+    </div>
+</section>
+<div class="container" id="crop-avatar">
+
+    <!-- Current avatar 
+    <div class="avatar-view" title="Change the avatar">
+      <img src="img/picture.jpg" alt="Avatar">
+    </div>-->
+
+    <!-- Cropping modal -->
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmBrowse" class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="avatar-body">
+
+                            <!-- Upload image and data -->
+                            <div class="avatar-upload">
+                                <input type="hidden" class="avatar-src" name="avatar_src">
+                                <input type="hidden" class="avatar-data" name="avatar_data">
+                                <label for="avatarInput">Local upload</label>
+                                <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
+                            </div>
+
+                            <!-- Crop and preview -->
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="avatar-wrapper"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="avatar-preview preview-lg"></div>
+                                    <div class="avatar-preview preview-md"></div>
+                                    <div class="avatar-preview preview-sm"></div>
+                                </div>
+                            </div>
+
+                            <div class="row avatar-btns">
+                                <div class="col-md-9">
+                                    <!-- <div class="btn-group">
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="-90" title="Rotate -90 degrees">Rotate Left</button>
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="-15">-15deg</button>
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">-30deg</button>
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">-45deg</button>
+                                     </div>
+                                     <div class="btn-group">
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="90" title="Rotate 90 degrees">Rotate Right</button>
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="15">15deg</button>
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="30">30deg</button>
+                                       <button type="button" class="btn btn-primary" data-method="rotate" data-option="45">45deg</button>
+                                     </div>-->
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary btn-block avatar-save" (click)="onCropperPopupDone()">Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
